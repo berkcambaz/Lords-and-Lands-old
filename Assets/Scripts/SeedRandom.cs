@@ -45,4 +45,9 @@ public class SeedRandom
     {
         return Number(0, 6) + _bonus;
     }
+
+    internal LandmarkId Percent(int[] vs)
+    {
+        throw new NotImplementedException();
+    }
 }

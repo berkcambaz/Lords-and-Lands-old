@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Country 
 {
-    public CountyId id;
+    public CountryId id;
     public int gold;
     public int income;
     public int army;
     public int manpower;
+
+    public Country(CountryId _id = CountryId.None)
+    {
+        id = _id;
+        gold = 0;
+        income = 0;
+        army = 0;
+        manpower = 0;
+    }
 }
 
-public enum CountyId
+public enum CountryId
 {
     None = -1,
     Green,

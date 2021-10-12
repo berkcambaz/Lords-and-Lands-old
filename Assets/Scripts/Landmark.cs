@@ -5,6 +5,11 @@ using UnityEngine;
 public class Landmark 
 {
     public LandmarkId id;
+
+    public Landmark(LandmarkId _id)
+    {
+        id = _id;
+    }
 }
 
 public enum LandmarkId
@@ -12,9 +17,9 @@ public enum LandmarkId
     None = -1,
     Capital,
     Church,
-    Tower,
-    Mountains,
     Forest,
     House,
+    Mountains,
+    Tower,
     Count
 }

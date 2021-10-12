@@ -11,4 +11,11 @@ public class Province
 
     public Army ally;
     public Army enemy;
+
+    public Province(ref Country _owner)
+    {
+        owner = _owner;
+
+        landmark = new Landmark(LandmarkId.None);
+    }
 }

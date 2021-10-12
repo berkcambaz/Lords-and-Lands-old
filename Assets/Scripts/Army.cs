@@ -6,4 +6,10 @@ public class Army
 {
     public Country country;
     public bool acted;
+
+    public Army (Country _country, bool _acted)
+    {
+        country = _country;
+        acted = _acted;
+    }
 }

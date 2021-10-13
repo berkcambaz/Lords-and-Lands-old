@@ -7,6 +7,7 @@ public class TilemapManager : MonoBehaviour
 {
     public static TilemapManager Instance;
 
+    public Grid grid;
     public Tilemap tilemapProvince;
     public Tilemap tilemapLandmark;
 
@@ -17,6 +18,18 @@ public class TilemapManager : MonoBehaviour
     public void Init()
     {
         Instance = this;
+    }
+
+    public static void CenterGrid(bool _smoothed)
+    {
+        if (_smoothed)
+        {
+            /// TODO: Implement
+        }
+        else
+        {
+            Instance.grid.transform.position = new Vector3(World.width / -2f, World.height / -2f, 0f);
+        }
     }
 
     public static void UpdateProvinceTile(Vector2Int _pos, Province _province)

@@ -33,6 +33,7 @@ public static class World
         SprinkleNature();
 
         InitTilemap();
+        TilemapManager.CenterGrid(false);
     }
 
     private static void InitTilemap()

@@ -33,7 +33,7 @@ public static class World
         SprinkleNature();
 
         InitTilemap();
-        TilemapManager.CenterGrid(false);
+        Utility.CenterCamera(false);
     }
 
     private static void InitTilemap()

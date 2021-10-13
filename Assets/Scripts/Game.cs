@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     public Camera cam;
 
     public TilemapManager tilemapManager;
+    public UIManager uiManager;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class Game : MonoBehaviour
 
         // Initialize managers
         tilemapManager.Init();
+        uiManager.Init();
 
         World.Generate(4, 10, 10);
     }

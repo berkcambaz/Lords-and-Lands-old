@@ -20,7 +20,11 @@ public class MouseController : MonoBehaviour
     private void Update()
     {
         // If mouse is over UI, cancel any tile related UI
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            UIManager.HideTileHighlight();
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -34,8 +38,8 @@ public class MouseController : MonoBehaviour
             dragOrigin = Input.mousePosition;
         }
 
-        //Vector2Int targetTile = Vector2Int.FloorToInt(Game.Instance.cam.ScreenToWorldPoint(Input.mousePosition));
-        //TileUI.Instance.EnableTileHightlight(targetTile);
+        Vector2Int tilePos = Vector2Int.FloorToInt(Game.Instance.cam.ScreenToWorldPoint(Input.mousePosition));
+        UIManager.ShowTileHighlight(tilePos);
 
         scroll = Mathf.Clamp(scroll - (Input.mouseScrollDelta.y * scrollSpeed), zoomMin, zoomMax);
         Game.Instance.cam.orthographicSize = Mathf.Lerp(Game.Instance.cam.orthographicSize, scroll, Time.deltaTime * 5f);

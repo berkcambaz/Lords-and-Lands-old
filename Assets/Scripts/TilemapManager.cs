@@ -7,11 +7,11 @@ public class TilemapManager : MonoBehaviour
 {
     public static TilemapManager Instance;
 
-    public Tilemap tilemapCountry;
+    public Tilemap tilemapProvince;
     public Tilemap tilemapLandmark;
 
-    public TileBase[] countryTiles;
-    public TileBase[] countryOccupiedTiles;
+    public TileBase[] provinceTiles;
+    public TileBase[] provinceOccupiedTiles;
     public TileBase[] landmarkTiles;
 
     public void Init()
@@ -19,25 +19,28 @@ public class TilemapManager : MonoBehaviour
         Instance = this;
     }
 
-    public static void SetCountryTile(Vector2Int _pos, Country _country, bool _occupied)
+    public static void UpdateProvinceTile(Vector2Int _pos, Province _province)
     {
-        if (_country == null || _country.id == CountryId.None) return;
+        int id;
 
-        int id = (int)_country.id;
+        if (_province.occupier != null)
+        {
+            id = (int)_province.occupier.id;
+            Instance.tilemapProvince.SetTile((Vector3Int)_pos, Instance.provinceOccupiedTiles[id]);
+        }
+        else
+        {
+            id = (int)_province.owner.id;
+            Instance.tilemapProvince.SetTile((Vector3Int)_pos, Instance.provinceTiles[id]);
+        }
 
-        if (_occupied) Instance.tilemapCountry.SetTile((Vector3Int)_pos, Instance.countryOccupiedTiles[id]);
-        else Instance.tilemapCountry.SetTile((Vector3Int)_pos, Instance.countryTiles[id]);
-    }
-
-    public static void SetLandmarkTile(Vector2Int _pos, Landmark _landmark)
-    {
-        if (_landmark == null || _landmark.id == LandmarkId.None)
+        id = (int)_province.landmark.id;
+        if (id == (int)LandmarkId.None)
         {
             Instance.tilemapLandmark.SetTile((Vector3Int)_pos, null);
         }
         else
         {
-            int id = (int)_landmark.id;
             Instance.tilemapLandmark.SetTile((Vector3Int)_pos, Instance.landmarkTiles[id]);
         }
     }

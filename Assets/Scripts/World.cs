@@ -44,8 +44,7 @@ public static class World
                 Vector2Int pos = new Vector2Int(x, y);
                 int index = x + y * width;
 
-                TilemapManager.SetCountryTile(pos, provinces[index].owner, false);
-                TilemapManager.SetLandmarkTile(pos, provinces[index].landmark);
+                TilemapManager.UpdateProvinceTile(pos, provinces[index]);
             }
         }
     }

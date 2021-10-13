@@ -12,12 +12,12 @@ public class MouseController : MonoBehaviour
 
     private Vector3 dragOrigin;
 
-    void Start()
+    private void Start()
     {
         scroll = Game.Instance.cam.orthographicSize;
     }
 
-    void Update()
+    private void Update()
     {
         // If mouse is over UI, cancel any tile related UI
         if (EventSystem.current.IsPointerOverGameObject()) return;

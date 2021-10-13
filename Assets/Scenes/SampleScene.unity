@@ -340,14 +340,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2d9bea44d403e42834cc53a5e23342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapCountry: {fileID: 1619777767}
+  tilemapProvince: {fileID: 1619777767}
   tilemapLandmark: {fileID: 1760591644}
-  countryTiles:
+  provinceTiles:
   - {fileID: 11400000, guid: 62c9e2c38ca5a0a49ad8ce697864a327, type: 2}
   - {fileID: 11400000, guid: 6b098427626f4f849b1708bddf6ef914, type: 2}
   - {fileID: 11400000, guid: 2a2bd001a51c6ab44930dd0bb4a5c702, type: 2}
   - {fileID: 11400000, guid: 8f233a901de7053418b96d25c6fb66f7, type: 2}
-  countryOccupiedTiles:
+  provinceOccupiedTiles:
   - {fileID: 11400000, guid: a8a9c737879622548b8170d9ee1cc7dc, type: 2}
   - {fileID: 11400000, guid: 370a770d35558f145b7ac2ecc411b7db, type: 2}
   - {fileID: 11400000, guid: 35dd6cde0293dc14d8e9de5f821782ff, type: 2}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 1619777767}
   - component: {fileID: 1619777766}
   m_Layer: 0
-  m_Name: Tilemap Country
+  m_Name: Tilemap Province
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

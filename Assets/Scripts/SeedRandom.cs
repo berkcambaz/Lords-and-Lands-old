@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Globalization;
 
 public class SeedRandom
 {
@@ -9,7 +10,7 @@ public class SeedRandom
 
     public SeedRandom()
     {
-        random = new System.Random(Time.time.ToString().GetHashCode());
+        random = new System.Random(DateTime.Now.Millisecond.ToString().GetHashCode());
     }
 
     public SeedRandom(int _seed)

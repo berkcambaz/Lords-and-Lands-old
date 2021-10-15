@@ -11,6 +11,7 @@ public class MouseController : MonoBehaviour
     private float scroll;
 
     private Vector3 dragOrigin;
+    private bool moved = false;
 
     private void Start()
     {
@@ -31,11 +32,17 @@ public class MouseController : MonoBehaviour
             dragOrigin = Input.mousePosition;
         }
 
+
         if (Input.GetMouseButton(0))
         {
             Vector3 offset = Game.Instance.cam.ScreenToWorldPoint(dragOrigin) - Game.Instance.cam.ScreenToWorldPoint(Input.mousePosition);
             Game.Instance.cam.transform.Translate(offset);
             dragOrigin = Input.mousePosition;
+
+            if (!moved)
+            {
+                moved = offset.sqrMagnitude > 0.001f;
+            }
         }
 
         Vector2Int tilePos = Vector2Int.FloorToInt(Game.Instance.cam.ScreenToWorldPoint(Input.mousePosition));
@@ -43,5 +50,16 @@ public class MouseController : MonoBehaviour
 
         scroll = Mathf.Clamp(scroll - (Input.mouseScrollDelta.y * scrollSpeed), zoomMin, zoomMax);
         Game.Instance.cam.orthographicSize = Mathf.Lerp(Game.Instance.cam.orthographicSize, scroll, Time.deltaTime * 5f);
+
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (!moved)
+            {
+                Gameplay.ChooseProvince(World.GetProvince(tilePos));
+            }
+
+            moved = false;
+        }
     }
 }

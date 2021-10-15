@@ -6,8 +6,8 @@ public static class World
 {
     private static SeedRandom srandom;
 
-    private static Country[] countries;
-    private static Province[] provinces;
+    public static Country[] countries;
+    public static Province[] provinces;
     public static int countryCount;
     public static int width;
     public static int height;
@@ -34,6 +34,14 @@ public static class World
 
         InitTilemap();
         Utility.CenterCamera(false);
+    }
+
+    public static Province GetProvince(Vector2Int _pos)
+    {
+        if (_pos.x >= width || _pos.x < 0 || _pos.y >= height || _pos.y < 0)
+            return null;
+
+        return provinces[_pos.x + _pos.y * width];
     }
 
     private static void InitTilemap()

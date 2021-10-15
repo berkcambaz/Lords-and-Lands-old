@@ -22,5 +22,6 @@ public class Game : MonoBehaviour
         assetManager.Init();
 
         World.Generate(4, 10, 10);
+        Gameplay.Start();
     }
 }

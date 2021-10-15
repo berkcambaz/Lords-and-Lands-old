@@ -12,9 +12,12 @@ public class Province
     public Army ally;
     public Army enemy;
 
-    public Province(ref Country _owner)
+    public Vector2Int pos;
+
+    public Province(ref Country _owner, Vector2Int _pos)
     {
         owner = _owner;
+        pos = _pos;
 
         landmark = new Landmark(LandmarkId.None);
     }

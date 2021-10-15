@@ -23,11 +23,13 @@ public class Gameplay
         {
             currentProvince = null;
             UIDynamicPanel.HideProvince();
+            UIManager.HideTileFocus();
         }
         else
         {
             currentProvince = _province;
             UIDynamicPanel.ShowProvince(currentProvince);
+            UIManager.ShowTileFocus(_province.pos);
         }
     }
 }

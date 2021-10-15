@@ -101,23 +101,27 @@ public static class World
 
                 if (originY - 1 > -1 && provinces[upIndex] == null)
                 {
-                    _origins[countryId].Add(new Vector2Int(originX, originY - 1));
-                    provinces[upIndex] = new Province(ref countries[countryId]);
+                    Vector2Int pos = new Vector2Int(originX, originY - 1);
+                    _origins[countryId].Add(pos);
+                    provinces[upIndex] = new Province(ref countries[countryId], pos);
                 }
                 else if (originX + 1 < width && provinces[rightIndex] == null)
                 {
-                    _origins[countryId].Add(new Vector2Int(originX + 1, originY));
-                    provinces[rightIndex] = new Province(ref countries[countryId]);
+                    Vector2Int pos = new Vector2Int(originX + 1, originY);
+                    _origins[countryId].Add(pos);
+                    provinces[rightIndex] = new Province(ref countries[countryId], pos);
                 }
                 else if (originY + 1 < height && provinces[downIndex] == null)
                 {
-                    _origins[countryId].Add(new Vector2Int(originX, originY + 1));
-                    provinces[downIndex] = new Province(ref countries[countryId]);
+                    Vector2Int pos = new Vector2Int(originX, originY + 1);
+                    _origins[countryId].Add(pos);
+                    provinces[downIndex] = new Province(ref countries[countryId], pos);
                 }
                 else if (originX - 1 > -1 && provinces[leftIndex] == null)
                 {
-                    _origins[countryId].Add(new Vector2Int(originX - 1, originY));
-                    provinces[leftIndex] = new Province(ref countries[countryId]);
+                    Vector2Int pos = new Vector2Int(originX - 1, originY);
+                    _origins[countryId].Add(pos);
+                    provinces[leftIndex] = new Province(ref countries[countryId], pos);
                 }
                 else
                 {

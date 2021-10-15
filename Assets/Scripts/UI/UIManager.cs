@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public GameObject tileHighlight;
+    public GameObject tileFocus;
 
     public Text textGold;
     public Text textIncome;
@@ -32,12 +33,25 @@ public class UIManager : MonoBehaviour
 
     public static void ShowTileHighlight(Vector2 _pos)
     {
-        Instance.tileHighlight.transform.position = _pos;
+        // Add V(0.5, 0.5) to center it
+        Instance.tileHighlight.transform.position = _pos + new Vector2(0.5f, 0.5f);
         Instance.tileHighlight.SetActive(true);
     }
 
     public static void HideTileHighlight()
     {
         Instance.tileHighlight.SetActive(false);
+    }
+
+    public static void ShowTileFocus(Vector2 _pos)
+    {
+        // Add V(0.5, 0.5) to center it
+        Instance.tileFocus.transform.position = _pos + new Vector2(0.5f, 0.5f);
+        Instance.tileFocus.SetActive(true);
+    }
+
+    public static void HideTileFocus()
+    {
+        Instance.tileFocus.SetActive(false);
     }
 }

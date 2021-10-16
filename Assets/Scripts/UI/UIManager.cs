@@ -10,25 +10,19 @@ public class UIManager : MonoBehaviour
     public GameObject tileHighlight;
     public GameObject tileFocus;
 
-    public Text textGold;
-    public Text textIncome;
-    public Text textArmy;
-    public Text textManpower;
-
-    public Image imageCountry;
-    public Image imageNextCountry;
-
-    public GameObject panelDynamic;
-    public Text textProvinceName;
-    public Button buttonBuildCapital;
-    public Button buttonBuildForest;
-    public Button buttonBuildHouse;
-    public Button buttonBuildTower;
-    public Button buttonBuildChurch;
+    public UIDynamicPanel uiDynanamicPanel;
+    public UIMenu uiMenu;
+    public UIRoundPanel uiRoundPanel;
+    public UIStatPanel uiStatPanel;
 
     public void Init()
     {
         Instance = this;
+
+        uiDynanamicPanel.Init();
+        uiMenu.Init();
+        uiRoundPanel.Init();
+        uiStatPanel.Init();
     }
 
     public static void ShowTileHighlight(Vector2 _pos)

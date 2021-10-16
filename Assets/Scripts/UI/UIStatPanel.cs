@@ -1,12 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UIStatPanel 
+public class UIStatPanel : MonoBehaviour
 {
+    public static UIStatPanel Instance;
+
+    public Image imageCountry;
+    public Text textGold;
+    public Text textIncome;
+    public Text textArmy;
+    public Text textManpower;
+
+    public void Init()
+    {
+        Instance = this;
+    }
+
     public static void UpdateCountryImage(Country _country)
     {
-        UIManager.Instance.imageCountry.sprite = AssetManager.GetArmySprite(_country);
+        Instance.imageCountry.sprite = AssetManager.GetArmySprite(_country);
     }
 
     public static void UpdateCountryStats(Country _country)
@@ -16,9 +30,9 @@ public class UIStatPanel
         string army = _country.army > 999 ? "+999" : _country.army.ToString();
         string manpower = _country.manpower > 999 ? "+999" : _country.manpower.ToString();
 
-        UIManager.Instance.textGold.text = "Gold: " + gold;
-        UIManager.Instance.textIncome.text = "Income: " + income;
-        UIManager.Instance.textArmy.text = "Army: " + army;
-        UIManager.Instance.textManpower.text = "Manpower: " + manpower;
+        Instance.textGold.text = "Gold: " + gold;
+        Instance.textIncome.text = "Income: " + income;
+        Instance.textArmy.text = "Army: " + army;
+        Instance.textManpower.text = "Manpower: " + manpower;
     }
 }

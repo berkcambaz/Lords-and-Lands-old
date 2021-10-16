@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UIRoundPanel 
+public class UIRoundPanel : MonoBehaviour
 {
+    public static UIRoundPanel Instance;
+
+    public Image imageNextCountry;
+    
+    public void Init()
+    {
+        Instance = this;
+    }
+
     public static void UpdateNextCountryImage(Country _country)
     {
-        UIManager.Instance.imageNextCountry.sprite = AssetManager.GetArmySprite(_country);
+        Instance.imageNextCountry.sprite = AssetManager.GetArmySprite(_country);
     }
 }

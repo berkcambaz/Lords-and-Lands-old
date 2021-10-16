@@ -107,7 +107,9 @@ public class MENU_New : MonoBehaviour
         if (Instance.countryPurple) countries.Add(CountryId.Purple);
         if (Instance.countryRed) countries.Add(CountryId.Red);
         if (Instance.countryYellow) countries.Add(CountryId.Yellow);
-        World.Generate(countries.ToArray(), Instance.width, Instance.height);
+
+        // Only generate a new world if there's more than 1 country selected
+        if (countries.Count > 1) World.Generate(countries.ToArray(), Instance.width, Instance.height);
     }
 
     public static void GameplayStart()

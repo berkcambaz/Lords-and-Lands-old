@@ -94,6 +94,16 @@ public static class World
             }
         }
 
+        // Give the origin provinces to the owner's, otherwise other countries may occupy it
+        for (int countryId = 0; countryId < countryCount; ++countryId)
+        {
+            int originX = origins[countryId][0].x;
+            int originY = origins[countryId][0].y;
+            int index = originX + originY * width;
+            Vector2Int pos = new Vector2Int(originX, originY);
+            provinces[index] = new Province(ref countries[countryId], pos);
+        }
+
         return origins;
     }
 

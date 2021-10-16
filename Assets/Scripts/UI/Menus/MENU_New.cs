@@ -47,30 +47,33 @@ public class MENU_New : MonoBehaviour
 
         buttonHeightIncrease.onClick.AddListener(IncreaseHeight);
         buttonHeightDecrease.onClick.AddListener(DecreaseHeight);
+
+        buttonGenerate.onClick.AddListener(WorldGenerate);
+        buttonStart.onClick.AddListener(GameplayStart);
     }
 
     public static void ToggleCountryGreen()
     {
         Instance.countryGreen = !Instance.countryGreen;
-        Utility.SetButtonColor(ref Instance.buttonCountryGreen, Instance.countryGreen ? Color.white : Color.gray);
+        Utility.ToggleButtonColor(ref Instance.buttonCountryGreen, Instance.countryGreen);
     }
 
     public static void ToggleCountryPurple()
     {
         Instance.countryPurple = !Instance.countryPurple;
-        Utility.SetButtonColor(ref Instance.buttonCountryPurple, Instance.countryPurple ? Color.white : Color.gray);
+        Utility.ToggleButtonColor(ref Instance.buttonCountryPurple, Instance.countryPurple);
     }
 
     public static void ToggleCountryRed()
     {
         Instance.countryRed = !Instance.countryRed;
-        Utility.SetButtonColor(ref Instance.buttonCountryRed, Instance.countryRed ? Color.white : Color.gray);
+        Utility.ToggleButtonColor(ref Instance.buttonCountryRed, Instance.countryRed);
     }
 
     public static void ToggleCountryYellow()
     {
         Instance.countryYellow = !Instance.countryYellow;
-        Utility.SetButtonColor(ref Instance.buttonCountryYellow, Instance.countryYellow ? Color.white : Color.gray);
+        Utility.ToggleButtonColor(ref Instance.buttonCountryYellow, Instance.countryYellow);
     }
 
     public static void IncreaseWidth()
@@ -95,5 +98,20 @@ public class MENU_New : MonoBehaviour
     {
         if (Instance.height > 10) Instance.height--;    /// TODO: Make 10 a constant
         Instance.textHeight.text = Instance.height.ToString();
+    }
+
+    public static void WorldGenerate()
+    {
+        List<CountryId> countries = new List<CountryId>();
+        if (Instance.countryGreen) countries.Add(CountryId.Green);
+        if (Instance.countryPurple) countries.Add(CountryId.Purple);
+        if (Instance.countryRed) countries.Add(CountryId.Red);
+        if (Instance.countryYellow) countries.Add(CountryId.Yellow);
+        World.Generate(countries.ToArray(), Instance.width, Instance.height);
+    }
+
+    public static void GameplayStart()
+    {
+        Gameplay.Start();
     }
 }

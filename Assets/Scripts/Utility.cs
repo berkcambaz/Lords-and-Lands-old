@@ -24,10 +24,30 @@ public class Utility
         return World.countries[(id + 1) % World.countryCount];
     }
 
-    public static void SetButtonColor(ref Button _button, Color _color)
+    public static void ToggleButtonColor(ref Button _button, bool _active)
     {
         ColorBlock colors = _button.colors;
-        colors.normalColor = _color;
+
+        /// TODO: Sepereate colors as contants
+        // Inactive colors are just active color with -20 
+
+        if (_active)
+        {
+            colors.normalColor = Color.HSVToRGB(0, 0, 100 / 100f);
+            colors.highlightedColor = Color.HSVToRGB(0, 0, 96 / 100f);
+            colors.pressedColor = Color.HSVToRGB(0, 0, 78 / 100f);
+            colors.selectedColor = Color.HSVToRGB(0, 0, 96 / 100f);
+            colors.disabledColor = Color.HSVToRGB(0, 0, 78 / 100f);
+        }
+        else
+        {
+            colors.normalColor = Color.HSVToRGB(0, 0, 80 / 100f);
+            colors.highlightedColor = Color.HSVToRGB(0, 0, 76 / 100f);
+            colors.pressedColor = Color.HSVToRGB(0, 0, 58 / 100f);
+            colors.selectedColor = Color.HSVToRGB(0, 0, 76 / 100f);
+            colors.disabledColor = Color.HSVToRGB(0, 0, 58 / 100f);
+        }
+
         _button.colors = colors;
     }
 

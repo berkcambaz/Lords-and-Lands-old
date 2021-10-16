@@ -20,8 +20,5 @@ public class Game : MonoBehaviour
         tilemapManager.Init();
         uiManager.Init();
         assetManager.Init();
-
-        World.Generate(4, 10, 10);
-        Gameplay.Start();
     }
 }

@@ -12,11 +12,11 @@ public static class World
     public static int width;
     public static int height;
 
-    public static void Generate(int _countryCount, int _width, int _height)
+    public static void Generate(CountryId[] _countries, int _width, int _height)
     {
         srandom = new SeedRandom();
 
-        countryCount = _countryCount;
+        countryCount = _countries.Length;
         width = _width;
         height = _height;
 
@@ -25,7 +25,7 @@ public static class World
 
         for (int i = 0; i < countryCount; ++i)
         {
-            countries[i] = new Country((CountryId)i);
+            countries[i] = new Country(_countries[i]);
         }
 
         List<Vector2Int>[] origins = ChooseOrigins();

@@ -44,4 +44,10 @@ public class TilemapManager : MonoBehaviour
             Instance.tilemapLandmark.SetTile((Vector3Int)_pos, Instance.landmarkTiles[id]);
         }
     }
+
+    public static void ClearTile(Vector2Int _pos)
+    {
+        Instance.tilemapProvince.SetTile((Vector3Int)_pos, null);
+        Instance.tilemapLandmark.SetTile((Vector3Int)_pos, null);
+    }
 }

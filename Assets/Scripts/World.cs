@@ -9,11 +9,15 @@ public static class World
     public static Country[] countries;
     public static Province[] provinces;
     public static int countryCount;
-    public static int width;
-    public static int height;
+    public static int width = 0;
+    public static int height = 0;
 
     public static void Generate(CountryId[] _countries, int _width, int _height)
     {
+        // Clear the tilemap since generating a smaller map after having 
+        // generated one would cause the other tiles to be also shown
+        ClearTilemap();
+
         srandom = new SeedRandom();
 
         countryCount = _countries.Length;
@@ -54,6 +58,19 @@ public static class World
                 int index = x + y * width;
 
                 TilemapManager.UpdateProvinceTile(pos, provinces[index]);
+            }
+        }
+    }
+
+    private static void ClearTilemap()
+    {
+        for (int y = 0; y < height; ++y)
+        {
+            for (int x = 0; x < width; ++x)
+            {
+                Vector2Int pos = new Vector2Int(x, y);
+
+                TilemapManager.ClearTile(pos);
             }
         }
     }

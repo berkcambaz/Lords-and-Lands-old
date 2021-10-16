@@ -7,11 +7,14 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    public Canvas canvasMenu;
+    public Canvas canvasHUD;
+
     public GameObject tileHighlight;
     public GameObject tileFocus;
 
-    public UIDynamicPanel uiDynanamicPanel;
     public UIMenu uiMenu;
+    public UIDynamicPanel uiDynanamicPanel;
     public UIRoundPanel uiRoundPanel;
     public UIStatPanel uiStatPanel;
 
@@ -23,6 +26,26 @@ public class UIManager : MonoBehaviour
         uiMenu.Init();
         uiRoundPanel.Init();
         uiStatPanel.Init();
+    }
+
+    public static void ShowMenu()
+    {
+        Instance.canvasMenu.gameObject.SetActive(true);
+    }
+
+    public static void HideMenu()
+    {
+        Instance.canvasMenu.gameObject.SetActive(false);
+    }
+
+    public static void ShowHUD()
+    {
+        Instance.canvasHUD.gameObject.SetActive(true);
+    }
+
+    public static void HideHUD()
+    {
+        Instance.canvasHUD.gameObject.SetActive(false);
     }
 
     public static void ShowTileHighlight(Vector2 _pos)

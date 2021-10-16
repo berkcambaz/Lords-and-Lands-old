@@ -56,6 +56,7 @@ public class MouseController : MonoBehaviour
         {
             if (!moved)
             {
+                Debug.Log("YES");
                 Gameplay.ChooseProvince(World.GetProvince(tilePos));
             }
 

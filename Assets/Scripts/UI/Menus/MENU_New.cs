@@ -117,8 +117,11 @@ public class MENU_New : MonoBehaviour
     {
         Gameplay.Start();
 
-        // Hide all UI menus
-        UIMenu.HideMainPanel();
+        // Hide submenu and canvas menu
         UIMenu.HideCurrentSubmenu();
+        UIManager.HideMenu();
+
+        // Activate HUD
+        UIManager.ShowHUD();
     }
 }

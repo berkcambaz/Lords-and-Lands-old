@@ -30,16 +30,6 @@ public class UIMenu : MonoBehaviour
         menuNew.Init();
     }
 
-    public static void ShowMainPanel()
-    {
-        Instance.mainPanel.SetActive(true);
-    }
-
-    public static void HideMainPanel()
-    {
-        Instance.mainPanel.SetActive(false);
-    }
-
     public static void ShowNewPanel()
     {
         HideCurrentSubmenu();

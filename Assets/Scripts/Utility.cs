@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Utility
 {
@@ -21,6 +22,13 @@ public class Utility
     {
         int id = (int)_currentCountry.id;
         return World.countries[(id + 1) % World.countryCount];
+    }
+
+    public static void SetButtonColor(ref Button _button, Color _color)
+    {
+        ColorBlock colors = _button.colors;
+        colors.normalColor = _color;
+        _button.colors = colors;
     }
 
     public static string GetProvinceName(Province _province)

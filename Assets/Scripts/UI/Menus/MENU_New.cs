@@ -102,6 +102,7 @@ public class MENU_New : MonoBehaviour
 
     public static void WorldGenerate()
     {
+        /// TODO: Fix this monstrosity somehow
         List<CountryId> countries = new List<CountryId>();
         if (Instance.countryGreen) countries.Add(CountryId.Green);
         if (Instance.countryPurple) countries.Add(CountryId.Purple);
@@ -115,5 +116,9 @@ public class MENU_New : MonoBehaviour
     public static void GameplayStart()
     {
         Gameplay.Start();
+
+        // Hide all UI menus
+        UIMenu.HideMainPanel();
+        UIMenu.HideCurrentSubmenu();
     }
 }

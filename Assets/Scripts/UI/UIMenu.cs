@@ -69,7 +69,7 @@ public class UIMenu : MonoBehaviour
     /// <summary>
     /// Hides the current submenu.
     /// </summary>
-    private static void HideCurrentSubmenu()
+    public static void HideCurrentSubmenu()
     {
         if (Instance.currentSubmenu != null)
             Instance.currentSubmenu.SetActive(false);

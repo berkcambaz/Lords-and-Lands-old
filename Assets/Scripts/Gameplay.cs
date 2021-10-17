@@ -9,11 +9,18 @@ public class Gameplay
 
     public static void Start()
     {
-        currentCountry = World.countries[0];
+        NextTurn();
+    }
+
+    public static void NextTurn()
+    {
+        currentCountry = Utility.GetNextCountry(currentCountry);
+
+        // Add the income amount to the gold
+        currentCountry.gold += currentCountry.income;
 
         UIStatPanel.UpdateCountryImage(currentCountry);
         UIStatPanel.UpdateCountryStats(currentCountry);
-
         UIRoundPanel.UpdateNextCountryImage(Utility.GetNextCountry(currentCountry));
     }
 
@@ -42,18 +49,15 @@ public class Gameplay
             case LandmarkId.Capital:
                 return true;
             case LandmarkId.Church:
-                /// TODO: Add build cost to church
-                return true;
+                return _country.gold >= Constants.CostChurch;
             case LandmarkId.Forest:
                 return true;
             case LandmarkId.House:
-                /// TODO: Add build cost to house
-                return true;
+                return _country.gold >= Constants.CostHouse;
             case LandmarkId.Mountains:
                 return true;
             case LandmarkId.Tower:
-                /// TODO: Add build cost to tower
-                return true;
+                return _country.gold >= Constants.CostTower;
         }
 
         return false;
@@ -105,22 +109,25 @@ public class Gameplay
                 case LandmarkId.None:
                     break;
                 case LandmarkId.Capital:
-                    _country.gold += 10;
-                    _country.income += 1;
-                    _country.manpower += 3;
+                    _country.gold += Constants.CapitalGold;
+                    _country.income += Constants.CapitalIncome;
+                    _country.manpower += Constants.CapitalManpower;
                     _country.capitalBuilt = true;
                     break;
                 case LandmarkId.Church:
+                    _country.income += Constants.ChurchIncome;
+                    _country.gold -= Constants.CostChurch;
                     break;
                 case LandmarkId.Forest:
                     break;
                 case LandmarkId.House:
+                    _country.manpower += Constants.HouseManpower;
+                    _country.gold -= Constants.CostHouse;
                     break;
                 case LandmarkId.Mountains:
                     break;
                 case LandmarkId.Tower:
-                    break;
-                case LandmarkId.Count:
+                    _country.gold -= Constants.CostTower;
                     break;
             }
 

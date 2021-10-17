@@ -18,9 +18,14 @@ public class Utility
         }
     }
 
+    /// <summary>
+    /// Returns the next country, if there is already no country, returns the first country.
+    /// </summary>
+    /// <param name="_currentCountry"></param>
+    /// <returns></returns>
     public static Country GetNextCountry(Country _currentCountry)
     {
-        int id = (int)_currentCountry.id;
+        int id = _currentCountry == null ? -1 : (int)_currentCountry.id;
         return World.countries[(id + 1) % World.countryCount];
     }
 

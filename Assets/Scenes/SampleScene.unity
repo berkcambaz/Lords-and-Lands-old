@@ -1973,7 +1973,7 @@ GameObject:
   - component: {fileID: 548444578}
   - component: {fileID: 548444577}
   m_Layer: 5
-  m_Name: Button Backward
+  m_Name: Button Undo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4884,6 +4884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageNextCountry: {fileID: 898750021}
+  buttonNextTurn: {fileID: 185776585}
+  buttonUndo: {fileID: 548444577}
+  buttonRedo: {fileID: 1876995790}
 --- !u!1 &1384913896
 GameObject:
   m_ObjectHideFlags: 0
@@ -7581,7 +7584,7 @@ GameObject:
   - component: {fileID: 1876995791}
   - component: {fileID: 1876995790}
   m_Layer: 5
-  m_Name: Button Forward
+  m_Name: Button Redo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

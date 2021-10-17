@@ -25,7 +25,20 @@ public class Utility
     /// <returns></returns>
     public static Country GetNextCountry(Country _currentCountry)
     {
-        int id = _currentCountry == null ? -1 : (int)_currentCountry.id;
+        int id = -1;
+
+        // Find the corresponding id if current country exists
+        if (_currentCountry != null)
+        {
+            for (int i = 0; i < World.countries.Length; ++i)
+            {
+                if (World.countries[i].id == _currentCountry.id)
+                {
+                    id = (int)_currentCountry.id;
+                }
+            }
+        }
+
         return World.countries[(id + 1) % World.countryCount];
     }
 

@@ -19,9 +19,14 @@ public class Gameplay
         // Add the income amount to the gold
         currentCountry.gold += currentCountry.income;
 
+        // Update UI
         UIStatPanel.UpdateCountryImage(currentCountry);
         UIStatPanel.UpdateCountryStats(currentCountry);
         UIRoundPanel.UpdateNextCountryImage(Utility.GetNextCountry(currentCountry));
+
+        // Hide the dynamic panel to avoid bug where another nation can build to another
+        // nation if has selected their's province before clicking next turn
+        UIDynamicPanel.HideProvince();
     }
 
     public static void ChooseProvince(Province _province)
@@ -30,13 +35,11 @@ public class Gameplay
         {
             currentProvince = null;
             UIDynamicPanel.HideProvince();
-            UIManager.HideTileFocus();
         }
         else
         {
             currentProvince = _province;
             UIDynamicPanel.ShowProvince(currentProvince);
-            UIManager.ShowTileFocus(_province.pos);
         }
     }
 

@@ -62,10 +62,12 @@ public class UIDynamicPanel : MonoBehaviour
         Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
 
         Instance.panelDynamic.SetActive(true);
+        UIManager.ShowTileFocus(_province.pos);
     }
 
     public static void HideProvince()
     {
         Instance.panelDynamic.SetActive(false);
+        UIManager.HideTileFocus();
     }
 }

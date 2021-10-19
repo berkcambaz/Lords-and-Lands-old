@@ -14,12 +14,16 @@ public class Gameplay
 
     public static void NextTurn()
     {
+        // If country has not placed it's capital yet, don't move to next turn
+        if (!currentCountry.capitalBuilt) return;
+
         currentCountry = Utility.GetNextCountry(currentCountry);
 
         // Add the income amount to the gold
         currentCountry.gold += currentCountry.income;
 
         // Update UI
+        UIDynamicPanel.UpdateArmyImage(currentCountry);
         UIStatPanel.UpdateCountryImage(currentCountry);
         UIStatPanel.UpdateCountryStats(currentCountry);
         UIRoundPanel.UpdateNextCountryImage(Utility.GetNextCountry(currentCountry));
@@ -43,6 +47,48 @@ public class Gameplay
         }
     }
 
+    public static bool CanRecruit(Country _country, Province _province)
+    {
+        // If money is not enough
+        if (_country.gold < Constants.CostArmy) return false;
+
+        // If manpower is not enough 
+        if (_country.manpower < _country.army + 1) return false;
+
+        return true;
+    }
+
+    public static bool AvailableToRecruit(Country _country, Province _province)
+    {
+        // Check if it's the province owner
+        if (_country.id != _province.owner.id) return false;
+
+        // If province is occupied
+        if (_province.occupier != null) return false;
+
+        // If there is an ally or enemy army in the province
+        if (_province.ally != null || _province.enemy != null) return false;
+
+        // Only allow recruiting armies in the house provinces
+        switch (_province.landmark.id)
+        {
+            case LandmarkId.House:
+                return true;
+        }
+
+        return false;
+    }
+
+    public static void Recruit(ref Country _country, ref Province _province)
+    {
+        if (!CanRecruit(_country, _province)) return;
+
+        _country.gold -= Constants.CostArmy;
+        _country.army += 1;
+
+        /// TODO: Instantiate army
+    }
+
     public static bool CanBuild(Country _country, Province _province, LandmarkId _landmarkId)
     {
         switch (_landmarkId)
@@ -54,11 +100,11 @@ public class Gameplay
             case LandmarkId.Church:
                 return _country.gold >= Constants.CostChurch;
             case LandmarkId.Forest:
-                return true;
+                return false;
             case LandmarkId.House:
                 return _country.gold >= Constants.CostHouse;
             case LandmarkId.Mountains:
-                return true;
+                return false;
             case LandmarkId.Tower:
                 return _country.gold >= Constants.CostTower;
         }
@@ -102,41 +148,41 @@ public class Gameplay
     public static void Build(ref Country _country, ref Province _province, LandmarkId _landmarkId)
     {
         /// TODO: Handle destroying the current landmark
-        if (CanBuild(_country, _province, _landmarkId))
+
+        if (!CanBuild(_country, _province, _landmarkId)) return;
+
+        _province.landmark.id = _landmarkId;
+        TilemapManager.UpdateProvinceTile(_province.pos, _province);
+
+        switch (_landmarkId)
         {
-            _province.landmark.id = _landmarkId;
-            TilemapManager.UpdateProvinceTile(_province.pos, _province);
-
-            switch (_landmarkId)
-            {
-                case LandmarkId.None:
-                    break;
-                case LandmarkId.Capital:
-                    _country.gold += Constants.CapitalGold;
-                    _country.income += Constants.CapitalIncome;
-                    _country.manpower += Constants.CapitalManpower;
-                    _country.capitalBuilt = true;
-                    break;
-                case LandmarkId.Church:
-                    _country.income += Constants.ChurchIncome;
-                    _country.gold -= Constants.CostChurch;
-                    break;
-                case LandmarkId.Forest:
-                    break;
-                case LandmarkId.House:
-                    _country.manpower += Constants.HouseManpower;
-                    _country.gold -= Constants.CostHouse;
-                    break;
-                case LandmarkId.Mountains:
-                    break;
-                case LandmarkId.Tower:
-                    _country.gold -= Constants.CostTower;
-                    break;
-            }
-
-            // Update the dynamic panel & stat panel
-            UIStatPanel.UpdateCountryStats(_country);
-            UIDynamicPanel.ShowProvince(_province);
+            case LandmarkId.None:
+                break;
+            case LandmarkId.Capital:
+                _country.gold += Constants.CapitalGold;
+                _country.income += Constants.CapitalIncome;
+                _country.manpower += Constants.CapitalManpower;
+                _country.capitalBuilt = true;
+                break;
+            case LandmarkId.Church:
+                _country.income += Constants.ChurchIncome;
+                _country.gold -= Constants.CostChurch;
+                break;
+            case LandmarkId.Forest:
+                break;
+            case LandmarkId.House:
+                _country.manpower += Constants.HouseManpower;
+                _country.gold -= Constants.CostHouse;
+                break;
+            case LandmarkId.Mountains:
+                break;
+            case LandmarkId.Tower:
+                _country.gold -= Constants.CostTower;
+                break;
         }
+
+        // Update the dynamic panel & stat panel
+        UIStatPanel.UpdateCountryStats(_country);
+        UIDynamicPanel.ShowProvince(_province);
     }
 }

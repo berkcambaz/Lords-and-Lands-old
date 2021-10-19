@@ -25,6 +25,7 @@ public class UIMenu : MonoBehaviour
 
         // Add listeners to buttons
         buttonNew.onClick.AddListener(ShowNewPanel);
+        buttonQuit.onClick.AddListener(Game.Quit);
 
         // Initialize menus
         menuNew.Init();

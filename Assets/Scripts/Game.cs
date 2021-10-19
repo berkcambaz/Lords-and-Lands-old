@@ -11,6 +11,7 @@ public class Game : MonoBehaviour
     public TilemapManager tilemapManager;
     public UIManager uiManager;
     public AssetManager assetManager;
+    public ArmyManager armyManager;
 
     private void Awake()
     {
@@ -20,5 +21,11 @@ public class Game : MonoBehaviour
         tilemapManager.Init();
         uiManager.Init();
         assetManager.Init();
+        armyManager.Init();
+    }
+
+    public static void Quit()
+    {
+        Application.Quit(0);
     }
 }

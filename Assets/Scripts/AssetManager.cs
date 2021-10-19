@@ -26,7 +26,6 @@ public class AssetManager : MonoBehaviour
             case LandmarkId.House:
             case LandmarkId.Mountains:
             case LandmarkId.Tower:
-            case LandmarkId.Count:
                 int id = (int)_landmark.id;
                 return Instance.landmarkSprites[id];
             default:
@@ -46,8 +45,6 @@ public class AssetManager : MonoBehaviour
             case CountryId.Yellow:
                 int id = (int)_country.id;
                 return Instance.armySprites[id];
-            case CountryId.Count:
-                return null;
             default:
                 return null;
         }

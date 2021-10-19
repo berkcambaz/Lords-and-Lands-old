@@ -27,15 +27,18 @@ public class Gameplay
         choosingArmyMovement = false;
         UIManager.HideMoveableTiles();
 
-        // Add the income amount to the gold
-        currentCountry.gold += currentCountry.income;
-
-        // Update the armies
-        for (int i = 0; i < World.provinces.Length; ++i)
+        if (currentCountry != null)
         {
-            if (World.provinces[i].army != null && World.provinces[i].army.country.id == currentCountry.id)
+            // Add the income amount to the gold
+            currentCountry.gold += currentCountry.income;
+
+            // Update the armies
+            for (int i = 0; i < World.provinces.Length; ++i)
             {
-                World.provinces[i].army.Update(ref currentProvince);
+                if (World.provinces[i].army != null && World.provinces[i].army.country.id == currentCountry.id)
+                {
+                    World.provinces[i].army.Update(ref World.provinces[i]);
+                }
             }
         }
 
@@ -181,6 +184,105 @@ public class Gameplay
     {
         // Army can't attack own lands unless it's occupied
         if (_province.owner.id == _province.army.country.id && _province.occupier == null) return;
+
+        float armyDice = srandom.Dice();
+        float landDice = srandom.Dice();
+
+        // Add offensive bonus to attacker(ally)
+        armyDice += _province.army.GetOffensive();
+
+        // Add support bonus to attacker(ally)
+        armyDice += Utility.GetSupportBonus(_province, _province.army.country);
+
+        // Aadd defensive bonus to defender(land)
+        landDice += _province.landmark.GetDefensive();
+
+        if (armyDice > landDice)
+        {
+            // If unsieging own province
+            if (_province.owner.id == _province.army.country.id)
+            {
+                switch (_province.landmark.id)
+                {
+                    //case LandmarkId.Capital:
+                    //    break;
+                    case LandmarkId.Church:
+                        _province.owner.income += Constants.ChurchIncome;
+                        break;
+                    case LandmarkId.House:
+                        _province.owner.manpower += Constants.HouseManpower;
+                        break;
+                    case LandmarkId.None:
+                    case LandmarkId.Mountains:
+                    case LandmarkId.Forest:
+                    case LandmarkId.Tower:
+                    default:
+                        break;
+                }
+
+                // Transfer occupation and update province tile
+                _province.occupier = null;
+                TilemapManager.UpdateProvinceTile(_province.pos, _province);
+            }
+            // If sieging unsieged
+            else if (_province.occupier == null)
+            {
+                switch (_province.landmark.id)
+                {
+                    //case LandmarkId.Capital:
+                    //    break;
+                    case LandmarkId.Church:
+                        _province.owner.income -= Constants.ChurchIncome;
+                        break;
+                    case LandmarkId.House:
+                        _province.owner.manpower -= Constants.HouseManpower;
+                        break;
+                    case LandmarkId.None:
+                    case LandmarkId.Mountains:
+                    case LandmarkId.Forest:
+                    case LandmarkId.Tower:
+                    default:
+                        break;
+                }
+
+                // Transfer occupation and update province tile
+                _province.occupier = _province.army.country;
+                TilemapManager.UpdateProvinceTile(_province.pos, _province);
+            }
+            // If sieging sieged by somebody else
+            else if (_province.occupier.id != _province.army.country.id)
+            {
+                // Transfer occupation and update province tile
+                _province.occupier = _province.army.country;
+                TilemapManager.UpdateProvinceTile(_province.pos, _province);
+            }
+            // If conquering sieged province
+            else
+            {
+                switch (_province.landmark.id)
+                {
+                    //case LandmarkId.Capital:
+                    //    break;
+                    case LandmarkId.Church:
+                        _province.occupier.income += Constants.ChurchIncome;
+                        break;
+                    case LandmarkId.House:
+                        _province.occupier.manpower += Constants.HouseManpower;
+                        break;
+                    case LandmarkId.None:
+                    case LandmarkId.Mountains:
+                    case LandmarkId.Forest:
+                    case LandmarkId.Tower:
+                    default:
+                        break;
+                }
+
+                // Transfer occupation and update province tile
+                _province.owner = _province.army.country;
+                _province.occupier = null;
+                TilemapManager.UpdateProvinceTile(_province.pos, _province);
+            }
+        }
     }
 
     public static bool CanRecruit(Country _country, Province _province)

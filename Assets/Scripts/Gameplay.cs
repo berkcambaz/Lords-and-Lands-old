@@ -64,7 +64,7 @@ public class Gameplay
 
     public static void ShowMoveables(Country _country, Province _province)
     {
-        bool[] moveables = Utility.GetMoveableProvinces(_province);
+        bool[] moveables = Utility.GetMoveableProvinces(_country, _province);
         UIManager.ShowMoveableTiles(_province.pos, moveables);
         choosingArmyMovement = true;
     }
@@ -75,7 +75,7 @@ public class Gameplay
         if (_province.army == null || _province.army.country.id != _country.id) return false;
 
         // If there is less than 1 moveable province bordering
-        if (Utility.GetMoveableProvinceCount(_province) < 1) return false;
+        if (Utility.GetMoveableProvinceCount(_country, _province) < 1) return false;
 
         // If army has alread moved
         if (_province.army.moved) return false;
@@ -120,8 +120,42 @@ public class Gameplay
         allyDice += _provinceFrom.landmark.GetOffensive();
         enemyDice += _provinceTo.landmark.GetDefensive();
 
+        // Add support bonuses
+
+        // Add exhaust modifier
         allyDice -= _provinceFrom.army.exhaust;
         enemyDice -= _provinceTo.army.exhaust;
+
+        if (allyDice > enemyDice)
+        {
+            // Destroy enemy army
+            ArmyManager.DestroyArmy(ref _provinceTo);
+
+            // Move the army to the target province
+            _provinceTo.army = _provinceFrom.army;
+            _provinceFrom.army = null;
+            _provinceTo.army.moved = true;
+            ArmyManager.MoveArmy(_provinceTo);
+        }
+        else if (allyDice < enemyDice)
+        {
+            // Destroy allied army
+            ArmyManager.DestroyArmy(ref _provinceFrom);
+
+            // Add exhaust to defender(enemy)
+            _provinceTo.army.exhaust += 0.25f;
+        }
+        else if (allyDice == enemyDice)
+        {
+            // Add exhaust to defender(enemy)
+            _provinceTo.army.exhaust += 0.5f;
+
+            // Mark attacker(ally) as moved
+            _provinceFrom.army.moved = true;
+        }
+
+        Debug.Log("Ally dice: " + allyDice);
+        Debug.Log("Enemy dice: " + enemyDice);
     }
 
     public static void AttackLand()

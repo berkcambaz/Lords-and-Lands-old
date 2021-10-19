@@ -115,7 +115,7 @@ public class Utility
         return name;
     }
 
-    public static bool[] GetMoveableProvinces(Province _province)
+    public static bool[] GetMoveableProvinces(Country _country, Province _province)
     {
         // For a province to be moveable, it should have no allied army
 
@@ -126,17 +126,17 @@ public class Utility
         Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
         Province left = World.GetProvince(_province.pos + Vector2Int.left);
 
-        moveables[(int)Direction.Top] = top != null && top.army == null;
-        moveables[(int)Direction.Right] = right != null && right.army == null;
-        moveables[(int)Direction.Bottom] = bottom != null && bottom.army == null;
-        moveables[(int)Direction.Left] = left != null && left.army == null;
+        moveables[(int)Direction.Top] = top != null && (top.army != null && top.army.country.id != _country.id || top.army == null);
+        moveables[(int)Direction.Right] = right != null && (right.army != null && right.army.country.id != _country.id || right.army == null);
+        moveables[(int)Direction.Bottom] = bottom != null && (bottom.army != null && bottom.army.country.id != _country.id || bottom.army == null);
+        moveables[(int)Direction.Left] = left != null && (left.army != null && left.army.country.id != _country.id || left.army == null);
 
         return moveables;
     }
 
-    public static int GetMoveableProvinceCount(Province _province)
+    public static int GetMoveableProvinceCount(Country _country, Province _province)
     {
-        bool[] moveables = GetMoveableProvinces(_province);
+        bool[] moveables = GetMoveableProvinces(_country, _province);
         int moveableCount = 0;
 
         for (int i = 0; i < moveables.Length; ++i)

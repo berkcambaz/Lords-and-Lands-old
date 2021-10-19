@@ -6,13 +6,16 @@ public class Army
 {
     public Country country;
 
+    public GameObject gameobject;
+
     public bool moved;
     public float exhaust;
 
-    public Army(Country _country, bool _moved)
+    public Army(ref Country _country)
     {
         country = _country;
-        moved = _moved;
+
+        moved = false;
         exhaust = 0f;
     }
 

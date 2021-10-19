@@ -13,6 +13,12 @@ public class UIManager : MonoBehaviour
     public GameObject tileHighlight;
     public GameObject tileFocus;
 
+    public GameObject moveableTiles;
+    public GameObject tileTop;
+    public GameObject tileRight;
+    public GameObject tileBottom;
+    public GameObject tileLeft;
+
     public UIMenu uiMenu;
     public UIDynamicPanel uiDynanamicPanel;
     public UIRoundPanel uiRoundPanel;
@@ -70,5 +76,22 @@ public class UIManager : MonoBehaviour
     public static void HideTileFocus()
     {
         Instance.tileFocus.SetActive(false);
+    }
+
+    public static void ShowMoveableTiles(Vector2 _pos, bool[] _moveables)
+    {
+        Instance.tileTop.SetActive(_moveables[(int)Direction.Top]);
+        Instance.tileRight.SetActive(_moveables[(int)Direction.Right]);
+        Instance.tileBottom.SetActive(_moveables[(int)Direction.Bottom]);
+        Instance.tileLeft.SetActive(_moveables[(int)Direction.Left]);
+
+        Instance.moveableTiles.transform.position = _pos + new Vector2(0.5f, 0.5f);
+
+        Instance.moveableTiles.SetActive(true);
+    }
+
+    public static void HideMoveableTiles()
+    {
+        Instance.moveableTiles.SetActive(false);
     }
 }

@@ -7,6 +7,8 @@ public class Gameplay
     public static Country currentCountry;
     public static Province currentProvince;
 
+    public static bool choosingArmyMovement = false;
+
     public static void Start()
     {
         NextTurn();
@@ -15,7 +17,7 @@ public class Gameplay
     public static void NextTurn()
     {
         // If country has not placed it's capital yet, don't move to next turn
-        if (!currentCountry.capitalBuilt) return;
+        if (currentCountry != null && !currentCountry.capitalBuilt) return;
 
         currentCountry = Utility.GetNextCountry(currentCountry);
 
@@ -35,6 +37,11 @@ public class Gameplay
 
     public static void ChooseProvince(Province _province)
     {
+        if (choosingArmyMovement)
+        {
+            Move(ref currentCountry, ref currentProvince, ref _province);
+        }
+
         if (currentProvince == _province || _province == null)
         {
             currentProvince = null;
@@ -45,6 +52,70 @@ public class Gameplay
             currentProvince = _province;
             UIDynamicPanel.ShowProvince(currentProvince);
         }
+    }
+
+    public static void ShowMoveables(Country _country, Province _province)
+    {
+        bool[] moveables = Utility.GetMoveableProvinces(_province);
+        UIManager.ShowMoveableTiles(_province.pos, moveables);
+        choosingArmyMovement = true;
+    }
+
+    public static bool AvailableToMove(Country _country, Province _province)
+    {
+        // If there is a enemy and no ally
+        if (_province.enemy != null || _province.ally == null) return false;
+
+        // If the ally army is not ours
+        if (_province.ally.country.id != _country.id) return false;
+
+        // If there is less than 1 moveable province bordering
+        if (Utility.GetMoveableProvinceCount(_province) < 1) return false;
+
+        // If army has alread moved
+        if (_province.ally.moved) return false;
+
+        return true;
+    }
+
+    public static void Move(ref Country _country, ref Province _provinceFrom, ref Province _provinceTo)
+    {
+        choosingArmyMovement = false;
+        UIManager.HideMoveableTiles();
+
+        // If army movement range is smaller than province distance, don't move
+        // TODO: 1f is current movement range for armies, which is only 1 province
+        // to the right, left, up or down. Make it obtained from army class.
+        if (Utility.GetProvinceDistance(_provinceFrom, _provinceTo) != 1f) return;
+
+        // If army has alread moved, don't move
+        if (_provinceFrom.ally.moved) return;
+
+        // If there is a ally army in the target province, don't move
+        if (_provinceTo.ally != null) return;
+
+        // If there is a enemy army in the target province, attack them
+        if (_provinceTo.enemy != null)
+        {
+            Attack();
+            return;
+        }
+
+        // Move the army to the target province
+        _provinceTo.ally = _provinceFrom.ally;
+        _provinceFrom.ally = null;
+        _provinceTo.ally.moved = true;
+        ArmyManager.MoveArmy(_provinceTo);
+    }
+
+    public static void Attack()
+    {
+
+    }
+
+    public static void AttackLand()
+    {
+
     }
 
     public static bool CanRecruit(Country _country, Province _province)
@@ -83,10 +154,17 @@ public class Gameplay
     {
         if (!CanRecruit(_country, _province)) return;
 
+        _province.ally = new Army(ref _country);
+
         _country.gold -= Constants.CostArmy;
         _country.army += 1;
 
-        /// TODO: Instantiate army
+        // Instantiate the army
+        ArmyManager.InstantiateArmy(ref _province);
+
+        // Update the dynamic panel & stat panel
+        UIStatPanel.UpdateCountryStats(_country);
+        UIDynamicPanel.ShowProvince(_province);
     }
 
     public static bool CanBuild(Country _country, Province _province, LandmarkId _landmarkId)

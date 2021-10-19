@@ -114,4 +114,50 @@ public class Utility
 
         return name;
     }
+
+    public static bool[] GetMoveableProvinces(Province _province)
+    {
+        // For a province to be moveable, it should have no allied army
+
+        bool[] moveables = new bool[(int)Direction.Count];
+
+        Province top = World.GetProvince(_province.pos + Vector2Int.up);
+        Province right = World.GetProvince(_province.pos + Vector2Int.right);
+        Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
+        Province left = World.GetProvince(_province.pos + Vector2Int.left);
+
+        moveables[(int)Direction.Top] = top != null && top.ally == null;
+        moveables[(int)Direction.Right] = right != null && right.ally == null;
+        moveables[(int)Direction.Bottom] = bottom != null && bottom.ally == null;
+        moveables[(int)Direction.Left] = left != null && left.ally == null;
+
+        return moveables;
+    }
+
+    public static int GetMoveableProvinceCount(Province _province)
+    {
+        bool[] moveables = GetMoveableProvinces(_province);
+        int moveableCount = 0;
+
+        for (int i = 0; i < moveables.Length; ++i)
+        {
+            if (moveables[i]) moveableCount++;
+        }
+
+        return moveableCount;
+    }
+
+    public static float GetProvinceDistance(Province _a, Province _b)
+    {
+        return (_a.pos - _b.pos).magnitude;
+    }
+}
+
+public enum Direction
+{
+    Top,
+    Right,
+    Bottom,
+    Left,
+    Count
 }

@@ -23,7 +23,7 @@ public class Gameplay
         // If country has not placed it's capital yet, don't move to next turn
         if (currentCountry != null && !currentCountry.capitalBuilt) return;
 
-        // Army movement is not going to be chose anymore, since turn is now other player's
+        // Army movement is not going to be chosen anymore, since turn is now other player's
         choosingArmyMovement = false;
         UIManager.HideMoveableTiles();
 
@@ -31,6 +31,15 @@ public class Gameplay
 
         // Add the income amount to the gold
         currentCountry.gold += currentCountry.income;
+
+        // Update the armies
+        for (int i = 0; i < World.provinces.Length; ++i)
+        {
+            if (World.provinces[i].army != null && World.provinces[i].army.country.id == currentCountry.id)
+            {
+                World.provinces[i].army.Update();
+            }
+        }
 
         // Update UI
         UIDynamicPanel.UpdateArmyImage(currentCountry);
@@ -122,8 +131,12 @@ public class Gameplay
 
         // Add support bonuses
 
-        // Add exhaust modifier
-        allyDice -= _provinceFrom.army.exhaust;
+        // Add army bonuses
+        allyDice += _provinceFrom.army.GetOffensive();
+        enemyDice += _provinceTo.army.GetDefensive();
+
+        // Add exhaust modifier to defender(enemy)
+        //allyDice -= _provinceFrom.army.exhaust;
         enemyDice -= _provinceTo.army.exhaust;
 
         if (allyDice > enemyDice)
@@ -144,18 +157,21 @@ public class Gameplay
 
             // Add exhaust to defender(enemy)
             _provinceTo.army.exhaust += 0.25f;
+
+            // Mark defender as attacked
+            _provinceTo.army.attacked = true;
         }
         else if (allyDice == enemyDice)
         {
             // Add exhaust to defender(enemy)
             _provinceTo.army.exhaust += 0.5f;
 
+            // Mark defender as attacked
+            _provinceTo.army.attacked = true;
+
             // Mark attacker(ally) as moved
             _provinceFrom.army.moved = true;
         }
-
-        Debug.Log("Ally dice: " + allyDice);
-        Debug.Log("Enemy dice: " + enemyDice);
     }
 
     public static void AttackLand()

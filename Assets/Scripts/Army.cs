@@ -9,6 +9,7 @@ public class Army
     public GameObject gameobject;
 
     public bool moved;
+    public bool attacked;
     public float exhaust;
 
     public Army(ref Country _country)
@@ -16,7 +17,19 @@ public class Army
         country = _country;
 
         moved = false;
+        attacked = false;
         exhaust = 0f;
+    }
+
+    public void Update()
+    {
+        if (!moved && !attacked)
+        {
+            exhaust = Mathf.Clamp(exhaust - 0.5f, 0f, 6f);
+        }
+
+        moved = false;
+        attacked = false;
     }
 
     public float GetOffensive()

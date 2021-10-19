@@ -9,8 +9,7 @@ public class Province
 
     public Landmark landmark;
 
-    public Army ally;
-    public Army enemy;
+    public Army army;
 
     public Vector2Int pos;
 

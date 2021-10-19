@@ -20,7 +20,8 @@ public class UIDynamicPanel : MonoBehaviour
     public Button buttonRecruit;
     public Button buttonMove;
 
-    public Image imageArmy;
+    public Image imageRecruitArmy;
+    public Image imageMoveArmy;
 
     public void Init()
     {
@@ -101,6 +102,7 @@ public class UIDynamicPanel : MonoBehaviour
 
     public static void UpdateArmyImage(Country _country)
     {
-        Instance.imageArmy.sprite = AssetManager.GetArmySprite(_country);
+        Instance.imageMoveArmy.sprite = AssetManager.GetArmySprite(_country);
+        Instance.imageRecruitArmy.sprite = AssetManager.GetArmySprite(_country);
     }
 }

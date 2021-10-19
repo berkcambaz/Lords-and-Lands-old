@@ -126,10 +126,10 @@ public class Utility
         Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
         Province left = World.GetProvince(_province.pos + Vector2Int.left);
 
-        moveables[(int)Direction.Top] = top != null && top.ally == null;
-        moveables[(int)Direction.Right] = right != null && right.ally == null;
-        moveables[(int)Direction.Bottom] = bottom != null && bottom.ally == null;
-        moveables[(int)Direction.Left] = left != null && left.ally == null;
+        moveables[(int)Direction.Top] = top != null && top.army == null;
+        moveables[(int)Direction.Right] = right != null && right.army == null;
+        moveables[(int)Direction.Bottom] = bottom != null && bottom.army == null;
+        moveables[(int)Direction.Left] = left != null && left.army == null;
 
         return moveables;
     }

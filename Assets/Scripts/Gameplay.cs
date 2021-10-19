@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gameplay
 {
+    private static SeedRandom srandom;
+
     public static Country currentCountry;
     public static Province currentProvince;
 
@@ -11,6 +13,8 @@ public class Gameplay
 
     public static void Start()
     {
+        srandom = new SeedRandom();
+
         NextTurn();
     }
 
@@ -18,6 +22,10 @@ public class Gameplay
     {
         // If country has not placed it's capital yet, don't move to next turn
         if (currentCountry != null && !currentCountry.capitalBuilt) return;
+
+        // Army movement is not going to be chose anymore, since turn is now other player's
+        choosingArmyMovement = false;
+        UIManager.HideMoveableTiles();
 
         currentCountry = Utility.GetNextCountry(currentCountry);
 
@@ -63,17 +71,14 @@ public class Gameplay
 
     public static bool AvailableToMove(Country _country, Province _province)
     {
-        // If there is a enemy and no ally
-        if (_province.enemy != null || _province.ally == null) return false;
-
-        // If the ally army is not ours
-        if (_province.ally.country.id != _country.id) return false;
+        // If there is no army or it's not ours
+        if (_province.army == null || _province.army.country.id != _country.id) return false;
 
         // If there is less than 1 moveable province bordering
         if (Utility.GetMoveableProvinceCount(_province) < 1) return false;
 
         // If army has alread moved
-        if (_province.ally.moved) return false;
+        if (_province.army.moved) return false;
 
         return true;
     }
@@ -88,29 +93,35 @@ public class Gameplay
         // to the right, left, up or down. Make it obtained from army class.
         if (Utility.GetProvinceDistance(_provinceFrom, _provinceTo) != 1f) return;
 
-        // If army has alread moved, don't move
-        if (_provinceFrom.ally.moved) return;
-
         // If there is a ally army in the target province, don't move
-        if (_provinceTo.ally != null) return;
+        if (_provinceTo.army != null && _provinceTo.army.country.id == _country.id) return;
 
         // If there is a enemy army in the target province, attack them
-        if (_provinceTo.enemy != null)
+        if (_provinceTo.army != null && _provinceTo.army.country.id != _country.id)
         {
-            Attack();
+            Attack(ref _provinceFrom, ref _provinceTo);
             return;
         }
 
         // Move the army to the target province
-        _provinceTo.ally = _provinceFrom.ally;
-        _provinceFrom.ally = null;
-        _provinceTo.ally.moved = true;
+        _provinceTo.army = _provinceFrom.army;
+        _provinceFrom.army = null;
+        _provinceTo.army.moved = true;
         ArmyManager.MoveArmy(_provinceTo);
     }
 
-    public static void Attack()
+    public static void Attack(ref Province _provinceFrom, ref Province _provinceTo)
     {
+        // Dice 0 to 6
+        float allyDice = srandom.Dice();
+        float enemyDice = srandom.Dice();
 
+        // Add offensive bonus to attacker(ally), add defensive bonus to defender(enemy)
+        allyDice += _provinceFrom.landmark.GetOffensive();
+        enemyDice += _provinceTo.landmark.GetDefensive();
+
+        allyDice -= _provinceFrom.army.exhaust;
+        enemyDice -= _provinceTo.army.exhaust;
     }
 
     public static void AttackLand()
@@ -137,8 +148,8 @@ public class Gameplay
         // If province is occupied
         if (_province.occupier != null) return false;
 
-        // If there is an ally or enemy army in the province
-        if (_province.ally != null || _province.enemy != null) return false;
+        // If there is a army in the province
+        if (_province.army != null) return false;
 
         // Only allow recruiting armies in the house provinces
         switch (_province.landmark.id)
@@ -154,7 +165,7 @@ public class Gameplay
     {
         if (!CanRecruit(_country, _province)) return;
 
-        _province.ally = new Army(ref _country);
+        _province.army = new Army(ref _country);
 
         _country.gold -= Constants.CostArmy;
         _country.army += 1;

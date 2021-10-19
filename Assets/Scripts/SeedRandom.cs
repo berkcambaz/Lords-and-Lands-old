@@ -42,9 +42,10 @@ public class SeedRandom
         return _cases[_cases.GetLength(0) - 1, 1];
     }
 
-    public int Dice(int _bonus)
+    public int Dice()
     {
-        return Number(0, 6) + _bonus;
+        // Add plus 1 to the upper bound since it's exclusive
+        return Number(0, 6 + 1);
     }
 
     internal LandmarkId Percent(int[] vs)

@@ -4678,7 +4678,8 @@ MonoBehaviour:
   buttonBuildChurch: {fileID: 365864415}
   buttonRecruit: {fileID: 591241492}
   buttonMove: {fileID: 917106280}
-  imageArmy: {fileID: 1492754102}
+  imageRecruitArmy: {fileID: 1492754102}
+  imageMoveArmy: {fileID: 1847920801}
 --- !u!1 &974110032
 GameObject:
   m_ObjectHideFlags: 0
@@ -6952,7 +6953,7 @@ GameObject:
   - component: {fileID: 1492754103}
   - component: {fileID: 1492754102}
   m_Layer: 5
-  m_Name: Image Army
+  m_Name: Image Recruit Army
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7507,7 +7508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1616467588
 Transform:
   m_ObjectHideFlags: 0
@@ -8534,7 +8535,7 @@ GameObject:
   - component: {fileID: 1847920802}
   - component: {fileID: 1847920801}
   m_Layer: 5
-  m_Name: Image Army
+  m_Name: Image Move Army
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

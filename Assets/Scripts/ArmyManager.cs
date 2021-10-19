@@ -15,14 +15,15 @@ public class ArmyManager : MonoBehaviour
 
     public static void InstantiateArmy(ref Province _province)
     {
+        Instance.prefabArmy.GetComponent<SpriteRenderer>().sprite = AssetManager.GetArmySprite(_province.owner);
         Vector3 pos = new Vector3(_province.pos.x + 0.5f, _province.pos.y + Instance.prefabArmy.transform.localScale.y / 2f, 0f);
-        _province.ally.gameobject = Instantiate(Instance.prefabArmy, pos, Quaternion.identity, Instance.transform);
+        _province.army.gameobject = Instantiate(Instance.prefabArmy, pos, Quaternion.identity, Instance.transform);
     }
 
     public static void MoveArmy(Province _province)
     {
         Vector3 pos = new Vector3(_province.pos.x + 0.5f, _province.pos.y + Instance.prefabArmy.transform.localScale.y / 2f, 0f);
-        _province.ally.gameobject.transform.position = pos;
+        _province.army.gameobject.transform.position = pos;
     }
 
     public static void DestroyArmy()

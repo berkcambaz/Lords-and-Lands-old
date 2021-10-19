@@ -130,6 +130,8 @@ public class Gameplay
         enemyDice += _provinceTo.landmark.GetDefensive();
 
         // Add support bonuses
+        allyDice += Utility.GetSupportBonus(_provinceFrom, _provinceTo.army.country);
+        enemyDice += Utility.GetSupportBonus(_provinceTo, _provinceFrom.army.country);
 
         // Add army bonuses
         allyDice += _provinceFrom.army.GetOffensive();

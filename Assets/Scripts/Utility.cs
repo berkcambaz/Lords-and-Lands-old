@@ -151,6 +151,39 @@ public class Utility
     {
         return (_a.pos - _b.pos).magnitude;
     }
+
+    public static float GetSupportBonus(Province _province, Country _enemy)
+    {
+        float bonus = 0f;
+
+        Province top = World.GetProvince(_province.pos + Vector2Int.up);
+        Province right = World.GetProvince(_province.pos + Vector2Int.right);
+        Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
+        Province left = World.GetProvince(_province.pos + Vector2Int.left);
+
+        if (top != null)
+        {
+            if (top.army != null && top.army.country.id == _province.army.country.id) bonus += 0.5f;
+            else if (top.army != null && top.army.country.id == _enemy.id) bonus -= 1f;
+        }
+        if (right != null)
+        {
+            if (right.army != null && right.army.country.id == _province.army.country.id) bonus += 0.5f;
+            else if (right.army != null && right.army.country.id == _enemy.id) bonus -= 1f;
+        }
+        if (bottom != null)
+        {
+            if (bottom.army != null && bottom.army.country.id == _province.army.country.id) bonus += 0.5f;
+            else if (bottom.army != null && bottom.army.country.id == _enemy.id) bonus -= 1f;
+        }
+        if (left != null)
+        {
+            if (left.army != null && left.army.country.id == _province.army.country.id) bonus += 0.5f;
+            else if (left.army != null && left.army.country.id == _enemy.id) bonus -= 1f;
+        }
+
+        return bonus;
+    }
 }
 
 public enum Direction

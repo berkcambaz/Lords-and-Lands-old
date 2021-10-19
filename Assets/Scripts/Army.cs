@@ -21,11 +21,16 @@ public class Army
         exhaust = 0f;
     }
 
-    public void Update()
+    public void Update(ref Province _province)
     {
         if (!moved && !attacked)
         {
             exhaust = Mathf.Clamp(exhaust - 0.5f, 0f, 6f);
+        }
+
+        if (!moved)
+        {
+            Gameplay.AttackLand(ref _province);
         }
 
         moved = false;

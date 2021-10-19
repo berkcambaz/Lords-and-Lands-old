@@ -27,8 +27,6 @@ public class Gameplay
         choosingArmyMovement = false;
         UIManager.HideMoveableTiles();
 
-        currentCountry = Utility.GetNextCountry(currentCountry);
-
         // Add the income amount to the gold
         currentCountry.gold += currentCountry.income;
 
@@ -37,9 +35,12 @@ public class Gameplay
         {
             if (World.provinces[i].army != null && World.provinces[i].army.country.id == currentCountry.id)
             {
-                World.provinces[i].army.Update();
+                World.provinces[i].army.Update(ref currentProvince);
             }
         }
+
+        currentCountry = Utility.GetNextCountry(currentCountry);
+        currentProvince = null;
 
         // Update UI
         UIDynamicPanel.UpdateArmyImage(currentCountry);
@@ -176,9 +177,10 @@ public class Gameplay
         }
     }
 
-    public static void AttackLand()
+    public static void AttackLand(ref Province _province)
     {
-
+        // Army can't attack own lands unless it's occupied
+        if (_province.owner.id == _province.army.country.id && _province.occupier == null) return;
     }
 
     public static bool CanRecruit(Country _country, Province _province)

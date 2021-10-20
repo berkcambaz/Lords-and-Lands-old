@@ -19,6 +19,7 @@ public class UIDynamicPanel : MonoBehaviour
     public Button buttonBuildChurch;
     public Button buttonRecruit;
     public Button buttonMove;
+    public Button buttonDestroy;
 
     public Image imageRecruitArmy;
     public Image imageMoveArmy;
@@ -66,6 +67,11 @@ public class UIDynamicPanel : MonoBehaviour
         {
             Gameplay.ShowMoveables(Gameplay.currentCountry, Gameplay.currentProvince);
         });
+
+        buttonDestroy.onClick.AddListener(() =>
+        {
+            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.None);
+        });
     }
 
     public static void ShowProvince(Province _province)
@@ -80,6 +86,7 @@ public class UIDynamicPanel : MonoBehaviour
         bool availableToBuildChurch = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.Church);
         bool availableToRecruit = Gameplay.AvailableToRecruit(Gameplay.currentCountry, _province);
         bool availableToMove = Gameplay.AvailableToMove(Gameplay.currentCountry, _province);
+        bool availableToDestroy = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.None); ;
 
         Instance.buttonBuildCapital.gameObject.SetActive(availableToBuildCapital);
         Instance.buttonBuildForest.gameObject.SetActive(availableToBuildForest);
@@ -89,6 +96,7 @@ public class UIDynamicPanel : MonoBehaviour
         Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
         Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
         Instance.buttonMove.gameObject.SetActive(availableToMove);
+        Instance.buttonDestroy.gameObject.SetActive(availableToDestroy);
 
         Instance.panelDynamic.SetActive(true);
         UIManager.ShowTileFocus(_province.pos);

@@ -184,6 +184,40 @@ public class Utility
 
         return bonus;
     }
+
+    public static void ApplyLandmarkEffects(ref Country _country, ref Province _province, bool _destroying)
+    {
+        int modifier = _destroying ? -1 : 1;
+
+        switch (_province.landmark.id)
+        {
+            case LandmarkId.None:
+                break;
+            case LandmarkId.Capital:
+                _country.gold += Constants.CapitalGold;
+                _country.income += Constants.CapitalIncome;
+                _country.manpower += Constants.CapitalManpower;
+                _country.capitalBuilt = true;
+                break;
+            case LandmarkId.Church:
+                _country.income += Constants.ChurchIncome * modifier;
+                if (!_destroying) _country.gold -= Constants.CostChurch;
+                break;
+            case LandmarkId.Forest:
+                break;
+            case LandmarkId.House:
+                _country.manpower += Constants.HouseManpower * modifier;
+                if (!_destroying) _country.gold -= Constants.CostHouse;
+                break;
+            case LandmarkId.Mountains:
+                break;
+            case LandmarkId.Tower:
+                if (!_destroying) _country.gold -= Constants.CostTower;
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 public enum Direction

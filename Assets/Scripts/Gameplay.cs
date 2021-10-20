@@ -339,7 +339,7 @@ public class Gameplay
         switch (_landmarkId)
         {
             case LandmarkId.None:
-                return false;
+                return true;
             case LandmarkId.Capital:
                 return true;
             case LandmarkId.Church:
@@ -368,23 +368,29 @@ public class Gameplay
         // If there is a landmark already and you are not destroying it
         if (_province.landmark.id != LandmarkId.None && _landmarkId != LandmarkId.None) return false;
 
+        // If capital is not build, and not building a capital
+        if (_landmarkId != LandmarkId.Capital && !_country.capitalBuilt) return false;
+
         switch (_landmarkId)
         {
             case LandmarkId.None:
-                // If it's not destroying the capital & a capital is built, allow it
-                return _province.landmark.id != LandmarkId.Capital && _country.capitalBuilt;
+                // If it's not destroying the capital, mountains or forest & a landmark is there
+                return _province.landmark.id != LandmarkId.Capital
+                    && _province.landmark.id != LandmarkId.Mountains
+                    && _province.landmark.id != LandmarkId.Forest
+                    && _province.landmark.id != LandmarkId.None;
             case LandmarkId.Capital:
                 return !_country.capitalBuilt;
             case LandmarkId.Church:
-                return _country.capitalBuilt;
+                return true;
             case LandmarkId.Forest:
                 return false;
             case LandmarkId.House:
-                return _country.capitalBuilt;
+                return true;
             case LandmarkId.Mountains:
                 return false;
             case LandmarkId.Tower:
-                return _country.capitalBuilt;
+                return true;
         }
 
         return false;
@@ -392,39 +398,22 @@ public class Gameplay
 
     public static void Build(ref Country _country, ref Province _province, LandmarkId _landmarkId)
     {
-        /// TODO: Handle destroying the current landmark
-
         if (!CanBuild(_country, _province, _landmarkId)) return;
 
-        _province.landmark.id = _landmarkId;
+
+        if (_landmarkId == LandmarkId.None)
+        {
+            Utility.ApplyLandmarkEffects(ref _country, ref _province, true);
+            _province.landmark.id = _landmarkId;
+        }
+        else
+        {
+            _province.landmark.id = _landmarkId;
+            Utility.ApplyLandmarkEffects(ref _country, ref _province, false);
+        }
+
         TilemapManager.UpdateProvinceTile(_province.pos, _province);
 
-        switch (_landmarkId)
-        {
-            case LandmarkId.None:
-                break;
-            case LandmarkId.Capital:
-                _country.gold += Constants.CapitalGold;
-                _country.income += Constants.CapitalIncome;
-                _country.manpower += Constants.CapitalManpower;
-                _country.capitalBuilt = true;
-                break;
-            case LandmarkId.Church:
-                _country.income += Constants.ChurchIncome;
-                _country.gold -= Constants.CostChurch;
-                break;
-            case LandmarkId.Forest:
-                break;
-            case LandmarkId.House:
-                _country.manpower += Constants.HouseManpower;
-                _country.gold -= Constants.CostHouse;
-                break;
-            case LandmarkId.Mountains:
-                break;
-            case LandmarkId.Tower:
-                _country.gold -= Constants.CostTower;
-                break;
-        }
 
         // Update the dynamic panel & stat panel
         UIStatPanel.UpdateCountryStats(_country);

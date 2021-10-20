@@ -29,6 +29,7 @@ public class ArmyManager : MonoBehaviour
     public static void DestroyArmy(ref Province _province)
     {
         Destroy(_province.army.gameobject);
+        _province.army.country.army -= 1;
         _province.army = null;
     }
 }

@@ -130,8 +130,8 @@ public class Gameplay
         float enemyDice = srandom.Dice();
 
         // Add offensive bonus to attacker(ally), add defensive bonus to defender(enemy)
-        allyDice += _provinceFrom.landmark.GetOffensive();
-        enemyDice += _provinceTo.landmark.GetDefensive();
+        allyDice += _provinceFrom.GetOffensive();
+        enemyDice += _provinceTo.GetDefensive();
 
         // Add support bonuses
         allyDice += Utility.GetSupportBonus(_provinceFrom, _provinceTo.army.country);
@@ -195,7 +195,7 @@ public class Gameplay
         armyDice += Utility.GetSupportBonus(_province, _province.army.country);
 
         // Aadd defensive bonus to defender(land)
-        landDice += _province.landmark.GetDefensive();
+        landDice += _province.GetDefensive();
 
         if (armyDice > landDice)
         {

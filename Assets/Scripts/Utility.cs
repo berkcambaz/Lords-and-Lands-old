@@ -34,7 +34,7 @@ public class Utility
             {
                 if (World.countries[i].id == _currentCountry.id)
                 {
-                    id = (int)_currentCountry.id;
+                    id = i;
                 }
             }
         }

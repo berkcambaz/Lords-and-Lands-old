@@ -365,6 +365,9 @@ public class Gameplay
         // If province is occupied
         if (_province.occupier != null) return false;
 
+        // If there is a enemy army in the province
+        if (_province.army != null && _province.army.country.id != _province.owner.id) return false;
+
         // If there is a landmark already and you are not destroying it
         if (_province.landmark.id != LandmarkId.None && _landmarkId != LandmarkId.None) return false;
 

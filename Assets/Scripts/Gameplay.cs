@@ -10,10 +10,13 @@ public class Gameplay
     public static Province currentProvince;
 
     public static bool choosingArmyMovement = false;
+    public static bool started = false;
 
     public static void Start()
     {
         srandom = new SeedRandom();
+
+        started = true;
 
         NextTurn();
     }
@@ -58,6 +61,9 @@ public class Gameplay
 
     public static void ChooseProvince(Province _province)
     {
+        // If the game hasn't started
+        if (!started) return;
+
         if (choosingArmyMovement)
         {
             Move(ref currentCountry, ref currentProvince, ref _province);

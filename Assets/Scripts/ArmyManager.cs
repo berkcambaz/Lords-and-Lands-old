@@ -30,6 +30,11 @@ public class ArmyManager : MonoBehaviour
     {
         Destroy(_province.army.gameobject);
         _province.army.country.army -= 1;
+
+        // Update UI if current countries army has died
+        if (Gameplay.currentCountry.id == _province.army.country.id)
+            UIStatPanel.UpdateCountryStats(Gameplay.currentCountry);
+
         _province.army = null;
     }
 }

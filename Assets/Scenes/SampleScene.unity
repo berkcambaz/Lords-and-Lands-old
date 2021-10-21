@@ -4821,6 +4821,7 @@ MonoBehaviour:
   buttonBuildChurch: {fileID: 365864415}
   buttonRecruit: {fileID: 591241492}
   buttonMove: {fileID: 917106280}
+  buttonDestroy: {fileID: 399977104}
   imageRecruitArmy: {fileID: 1492754102}
   imageMoveArmy: {fileID: 1847920801}
 --- !u!1 &974110032

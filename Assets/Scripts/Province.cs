@@ -24,7 +24,7 @@ public class Province
     public float GetOffensive()
     {
         // If army is not owner or occupier, gets no bonus
-        if (army.country.id != owner.id || army.country.id != occupier.id) return 0f;
+        if (army.country.id != owner.id || (occupier != null && army.country.id != occupier.id)) return 0f;
 
         switch (landmark.id)
         {
@@ -50,7 +50,7 @@ public class Province
     public float GetDefensive()
     {
         // If army is not owner or occupier, gets no bonus
-        if (army.country.id != owner.id || army.country.id != occupier.id) return 0f;
+        if (army.country.id != owner.id || (occupier != null && army.country.id != occupier.id)) return 0f;
 
         switch (landmark.id)
         {
@@ -76,7 +76,7 @@ public class Province
     public float GetDefensiveLand()
     {
         // If army is not owner or occupier, gets no bonus
-        if (army.country.id != owner.id || army.country.id != occupier.id) return 0f;
+        if (army.country.id != owner.id || (occupier != null && army.country.id != occupier.id)) return 0f;
 
         switch (landmark.id)
         {

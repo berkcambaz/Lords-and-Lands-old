@@ -8,9 +8,9 @@ public class Capital : Building
     [Space(20)]
     public int gold;
 
-    public override void OnBuild(ref Country _country)
+    public override void Build(ref Country _country)
     {
-        base.OnBuild(ref _country);
+        base.Build(ref _country);
 
         _country.gold += gold;
     }

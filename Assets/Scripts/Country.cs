@@ -10,8 +10,6 @@ public class Country
     public int army;
     public int manpower;
 
-    public bool capitalBuilt;
-
     public Country(CountryId _id = CountryId.None)
     {
         id = _id;
@@ -19,7 +17,6 @@ public class Country
         income = 0;
         army = 0;
         manpower = 0;
-        capitalBuilt = false;
     }
 }
 

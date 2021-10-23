@@ -47,9 +47,4 @@ public class SeedRandom
         // Add plus 1 to the upper bound since it's exclusive
         return Number(0, 6 + 1);
     }
-
-    internal LandmarkId Percent(int[] vs)
-    {
-        throw new NotImplementedException();
-    }
 }

@@ -2640,3 +2640,155 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1995.884851 seconds.
+  path: Assets/Scripts/Buildings/New Folder
+  artifactKey: Guid(9a41c7a40e7391b4f9a72daf940a23c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/New Folder using Guid(9a41c7a40e7391b4f9a72daf940a23c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c208eb1c30cf715cdc65a731751947ac') in 0.018079 seconds 
+  Import took 0.022207 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.357051 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f98473809c4ce4f505fc738f33d5b1e') in 0.019211 seconds 
+  Import took 0.023435 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.491641 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30c20bbafce150cb52e81ad9a71336da') in 0.006321 seconds 
+  Import took 0.010850 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 391.625223 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85f24daac1c88e771ae7bfddf6f59c5b') in 0.006642 seconds 
+  Import took 0.017026 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.033737 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85f24daac1c88e771ae7bfddf6f59c5b') in 0.009524 seconds 
+  Import took 0.017888 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.288021 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6e91d5832eab9ca2afa3e793bb8bea8') in 0.006901 seconds 
+  Import took 0.010891 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 17.511098 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f70426a15b423f0e91dddb0bed829cf') in 0.006188 seconds 
+  Import took 0.010097 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.250044 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22ca0b6c29b039864ec967c95f3747e4') in 0.008131 seconds 
+  Import took 0.012405 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 50.763992 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '815710483f568f3bf61f5a5fa119c65a') in 0.012039 seconds 
+  Import took 0.016774 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.993854 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ad5fd02d1c7b105b6518d5b293a7f0e') in 0.006410 seconds 
+  Import took 0.010160 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 217.288364 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b037a6b59ec6c395a6c3ca730096170f') in 0.005977 seconds 
+  Import took 0.010296 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.960516 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcda16ace8b06d78489123f9cb806225') in 0.008835 seconds 
+  Import took 0.015936 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.035987 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcda16ace8b06d78489123f9cb806225') in 0.010087 seconds 
+  Import took 0.024921 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 350.394928 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ed99c8cfa22767311aa4a5be3f862cf') in 0.005383 seconds 
+  Import took 0.015969 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000540 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ed99c8cfa22767311aa4a5be3f862cf') in 0.004445 seconds 
+  Import took 0.008387 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 99.805919 seconds.
+  path: Assets/Scripts/Buildings/IBuilding.cs
+  artifactKey: Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/IBuilding.cs using Guid(9cc5b1f0b63999d42800d1ca3b80af7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b43141bedddfe81013d923ac6c091032') in 0.005372 seconds 
+  Import took 0.015251 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 140.798627 seconds.
+  path: Assets/Scripts/Buildings/BuildingSlot.cs
+  artifactKey: Guid(d1a4b5a1bec02e84193bf7933f3c1cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/BuildingSlot.cs using Guid(d1a4b5a1bec02e84193bf7933f3c1cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc48f2516ccc04f527b345b67eaf1b80') in 0.011912 seconds 
+  Import took 0.016485 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000986 seconds.
+  path: Assets/Scripts/Buildings/BuildingSlot.cs
+  artifactKey: Guid(d1a4b5a1bec02e84193bf7933f3c1cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/BuildingSlot.cs using Guid(d1a4b5a1bec02e84193bf7933f3c1cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc48f2516ccc04f527b345b67eaf1b80') in 0.005942 seconds 
+  Import took 0.009989 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2341.174473 seconds.
+  path: Assets/Scripts/Landmark.cs
+  artifactKey: Guid(a9e7ba4fe6209ae468b241b15a4e5971) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Landmark.cs using Guid(a9e7ba4fe6209ae468b241b15a4e5971) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b4b938e0c567f1d9f90ef8a150be728') in 0.013951 seconds 
+  Import took 0.018676 seconds .
+

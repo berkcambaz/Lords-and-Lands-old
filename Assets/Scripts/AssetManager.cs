@@ -14,8 +14,9 @@ public class AssetManager : MonoBehaviour
         Instance = this;
     }
 
-    public static Sprite GetLandmarkSprite(Landmark _landmark)
+    public static Sprite GetLandmarkSprite(/*Landmark _landmark*/)
     {
+        /*
         switch (_landmark.id)
         {
             case LandmarkId.None:
@@ -31,6 +32,9 @@ public class AssetManager : MonoBehaviour
             default:
                 return null;
         }
+        */
+
+        return null;
     }
 
     public static Sprite GetArmySprite(Country _country)

@@ -19,6 +19,7 @@ public class Building : ScriptableObject
     public bool unique;
     public bool recruitable;
     public bool unbuildable;
+    public bool undestroyable;
 
     [Space(10)]
     public float offensive;
@@ -37,36 +38,37 @@ public class Building : ScriptableObject
         tile.color = color;
     }
 
-    public virtual void OnBuild(ref Country _country)
+    public virtual void Build(ref Country _country)
     {
         _country.gold -= cost;
         _country.income += income;
         _country.manpower += manpower;
     }
 
-    public virtual void OnDemolish(ref Country _country)
+    public virtual bool AvailableToBuild(Country _country)
+    {
+        bool alreadyBuilt = unique && Utility.GetAlreadyBuilt(_country, this);
+        return !unbuildable && !alreadyBuilt;
+    }
+
+    public virtual bool CanBuild(Country _country)
+    {
+        return _country.gold >= cost;
+    }
+
+    public virtual void Demolish(ref Country _country)
     {
         _country.income -= income;
         _country.manpower -= manpower;
     }
 
-    public virtual void OnFree()
+    public virtual bool AvailableToDemolish()
     {
-
+        return !undestroyable;
     }
 
-    public virtual void OnAttack()
+    public virtual bool CanDemolish()
     {
-
-    }
-
-    public virtual void OnOccupy()
-    {
-
-    }
-
-    public virtual void OnSurrender()
-    {
-
+        return true;
     }
 }

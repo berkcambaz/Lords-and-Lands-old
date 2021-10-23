@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1683e4fe469224547a6ceef04f32b694, type: 3}
+  m_Name: Capital
+  m_EditorClassIdentifier: 
+  name: Capital
+  cost: 0
+  income: 1
+  manpower: 3
+  unique: 1
+  recruitable: 1
+  unbuildable: 0
+  offensive: 0
+  defensive: 0
+  resistance: 3
+  sprite: {fileID: 21300000, guid: 47665c8b15ea88f4499e7d07882c4b0a, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  gold: 10

@@ -24,6 +24,7 @@ public class Game : MonoBehaviour
         armyManager.Init();
 
         // Initialize databases
+        ArmyDatabase.Init();
         BuildingDatabase.Init();
     }
 

@@ -49,8 +49,13 @@ public class Building : ScriptableObject
 
     public virtual bool AvailableToBuild(Province _province)
     {
+        // If capital is not built and capital is going to be built, allow it
+        bool capitalBuilt = Utility.GetAlreadyBuilt(_province.owner, BuildingDatabase.GetById(BuildingId.Capital));
+        if (!capitalBuilt) capitalBuilt = id == BuildingId.Capital;
+        
         bool alreadyBuilt = unique && Utility.GetAlreadyBuilt(_province.owner, this);
-        return !unbuildable && !alreadyBuilt;
+
+        return capitalBuilt && !unbuildable && !alreadyBuilt;
     }
 
     public virtual bool CanBuild(Province _province)

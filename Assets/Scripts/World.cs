@@ -50,15 +50,9 @@ public static class World
 
     private static void InitTilemap()
     {
-        for (int y = 0; y < height; ++y)
+        for (int i = 0; i < provinces.Length; ++i)
         {
-            for (int x = 0; x < width; ++x)
-            {
-                Vector2Int pos = new Vector2Int(x, y);
-                int index = x + y * width;
-
-                TilemapManager.UpdateProvinceTile(pos, provinces[index]);
-            }
+            TilemapManager.UpdateProvinceTile(provinces[i]);
         }
     }
 

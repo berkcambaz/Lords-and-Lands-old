@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Capital
   m_EditorClassIdentifier: 
   name: Capital
+  id: 0
   cost: 0
   income: 1
   manpower: 3
   unique: 1
   recruitable: 1
   unbuildable: 0
+  undestroyable: 1
   offensive: 0
   defensive: 0
   resistance: 3

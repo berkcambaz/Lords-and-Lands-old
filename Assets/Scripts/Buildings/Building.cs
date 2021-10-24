@@ -44,7 +44,7 @@ public class Building : ScriptableObject
         _province.owner.income += income;
         _province.owner.manpower += manpower;
 
-        _province.building = this;
+        _province.buildingSlot.building = this;
     }
 
     public virtual bool AvailableToBuild(Country _country)
@@ -63,7 +63,7 @@ public class Building : ScriptableObject
         _province.owner.income -= income;
         _province.owner.manpower -= manpower;
 
-        _province.building = null;
+        _province.buildingSlot.building = null;
     }
 
     public virtual bool AvailableToDemolish()

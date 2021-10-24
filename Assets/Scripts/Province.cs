@@ -5,10 +5,11 @@ using UnityEngine;
 public class Province
 {
     public ProvinceState state;
+
     public Country owner;
     public Country occupier;
 
-    public Building building;
+    public BuildingSlot buildingSlot;
 
     public Army army;
 
@@ -19,101 +20,30 @@ public class Province
         state = ProvinceState.Free;
 
         owner = _owner;
+
+        buildingSlot = new BuildingSlot(this);
+
         pos = _pos;
     }
 
-    public float GetOffensive()
-    {
-        if (building == null) return 0f;
-
-        return building.offensive;
-    }
-    public float GetDefensive()
-    {
-        if (building == null) return 0f;
-
-        return building.defensive;
-    }
-    public float GetResistance()
-    {
-        if (building == null) return 0f;
-
-        return building.resistance;
-    }
-
-    public void Build(Building _building)
-    {
-        if (!CanBuild(_building)) return;
-        _building.Build(this);
-
-        TilemapManager.UpdateProvinceTile(pos, this);
-
-        // Update the dynamic panel & stat panel
-        UIStatPanel.UpdateCountryStats(owner);
-        UIDynamicPanel.ShowProvince(this);
-    }
-
-    public bool AvailableToBuild(Building _building)
-    {
-        // If not the owner
-        if (Gameplay.currentCountry.id != owner.id) return false;
-
-        // If prequisites are not met
-        if (!_building.AvailableToBuild(owner)) return false;
-
-        // If there is already a building 
-        if (building != null) return false;
-
-        return true;
-    }
-
-    public bool CanBuild(Building _building)
-    {
-        // If prequisites are not met
-        if (!_building.CanBuild(owner)) return false;
-
-        // If province is not free
-        if (state != ProvinceState.Free) return false;
-
-        return true;
-    }
-
-    public void Demolish()
-    {
-        if (!CanDemolish()) return;
-        building.Demolish(this);
-
-        TilemapManager.UpdateProvinceTile(pos, this);
-
-        // Update the dynamic panel & stat panel
-        UIStatPanel.UpdateCountryStats(owner);
-        UIDynamicPanel.ShowProvince(this);
-    }
-
-    public bool AvailableToDemolish()
-    {
-        // If not the owner
-        if (Gameplay.currentCountry.id != owner.id) return false;
-
-        // If prequisites are not met
-        if (building != null && !building.AvailableToDemolish()) return false;
-
-        // If there is no building
-        if (building == null) return false;
-
-        return true;
-    }
-
-    public bool CanDemolish()
-    {
-        // If prequisites are not met
-        if (building != null && !building.CanDemolish()) return false;
-
-        // If province is not free
-        if (state != ProvinceState.Free) return false;
-
-        return true;
-    }
+    //public float GetOffensive()
+    //{
+    //    if (building == null) return 0f;
+    //
+    //    return building.offensive;
+    //}
+    //public float GetDefensive()
+    //{
+    //    if (building == null) return 0f;
+    //
+    //    return building.defensive;
+    //}
+    //public float GetResistance()
+    //{
+    //    if (building == null) return 0f;
+    //
+    //    return building.resistance;
+    //}
 
     public void Free()
     {

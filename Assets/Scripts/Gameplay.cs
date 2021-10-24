@@ -23,7 +23,7 @@ public class Gameplay
     public static void NextTurn()
     {
         // If country has not placed it's capital yet, don't move to next turn
-        if (currentCountry != null && Utility.GetAlreadyBuilt(currentCountry, BuildingDatabase.GetById(BuildingId.Capital)))
+        if (currentCountry != null && !Utility.GetAlreadyBuilt(currentCountry, BuildingDatabase.GetById(BuildingId.Capital)))
         {
             return;
         }

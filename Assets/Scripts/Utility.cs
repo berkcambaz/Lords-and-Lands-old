@@ -189,7 +189,7 @@ public class Utility
     {
         for (int i = 0; i < World.provinces.Length; ++i)
         {
-            if (World.provinces[i].owner.id == _country.id && World.provinces[i].building == _building)
+            if (World.provinces[i].owner.id == _country.id && World.provinces[i].buildingSlot.building == _building)
             {
                 return true;
             }

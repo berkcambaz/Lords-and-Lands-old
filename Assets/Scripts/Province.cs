@@ -22,11 +22,6 @@ public class Province
         pos = _pos;
     }
 
-    public void Update()
-    {
-
-    }
-
     public float GetOffensive()
     {
         if (building == null) return 0f;
@@ -49,8 +44,7 @@ public class Province
     public void Build(Building _building)
     {
         if (!CanBuild(_building)) return;
-
-        building = _building;
+        _building.Build(this);
 
         TilemapManager.UpdateProvinceTile(pos, this);
 
@@ -61,6 +55,9 @@ public class Province
 
     public bool AvailableToBuild(Building _building)
     {
+        // If not the owner
+        if (Gameplay.currentCountry.id != owner.id) return false;
+
         // If prequisites are not met
         if (!_building.AvailableToBuild(owner)) return false;
 
@@ -84,8 +81,7 @@ public class Province
     public void Demolish()
     {
         if (!CanDemolish()) return;
-
-        building = null;
+        building.Demolish(this);
 
         TilemapManager.UpdateProvinceTile(pos, this);
 
@@ -96,6 +92,9 @@ public class Province
 
     public bool AvailableToDemolish()
     {
+        // If not the owner
+        if (Gameplay.currentCountry.id != owner.id) return false;
+
         // If prequisites are not met
         if (building != null && !building.AvailableToDemolish()) return false;
 

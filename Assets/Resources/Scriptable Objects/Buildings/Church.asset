@@ -9,18 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93e76b86067df324194b176c28962c20, type: 3}
-  m_Name: Forest
+  m_Script: {fileID: 11500000, guid: 2fc6c26c96559af4db47865c2a36be31, type: 3}
+  m_Name: Church
   m_EditorClassIdentifier: 
-  name: Forest
-  cost: 0
-  income: 0
+  name: Church
+  id: 1
+  cost: 4
+  income: 1
   manpower: 0
   unique: 0
   recruitable: 0
-  unbuildable: 1
-  offensive: 1
+  unbuildable: 0
+  undestroyable: 0
+  offensive: 0
   defensive: 0
-  resistance: 1
-  sprite: {fileID: 0}
+  resistance: -1
+  sprite: {fileID: 21300000, guid: 669c04061817ca941b0c896ae66a736d, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class Game : MonoBehaviour
         uiManager.Init();
         assetManager.Init();
         armyManager.Init();
+
+        // Initialize databases
+        BuildingDatabase.Init();
     }
 
     public static void Quit()

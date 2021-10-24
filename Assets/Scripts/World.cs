@@ -164,11 +164,11 @@ public static class World
     {
         for (int i = 0; i < width * height; ++i)
         {
-            provinces[i].landmark.id = (LandmarkId)srandom.Percent(new int[,] {
-                { 75, (int)LandmarkId.None },
-                { 15, (int)LandmarkId.Forest },
-                { 10, (int)LandmarkId.Mountains }
-            });
+            //provinces[i].landmark.id = (LandmarkId)srandom.Percent(new int[,] {
+            //    { 75, (int)LandmarkId.None },
+            //    { 15, (int)LandmarkId.Forest },
+            //    { 10, (int)LandmarkId.Mountains }
+            //});
         }
     }
 

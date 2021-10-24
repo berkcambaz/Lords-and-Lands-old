@@ -30,7 +30,7 @@ public class Army
 
         if (!moved)
         {
-            Gameplay.AttackLand(ref _province);
+            //Gameplay.AttackLand(ref _province);
         }
 
         moved = false;

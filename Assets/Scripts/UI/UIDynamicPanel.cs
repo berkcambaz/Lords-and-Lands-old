@@ -30,47 +30,47 @@ public class UIDynamicPanel : MonoBehaviour
 
         buttonBuildCapital.onClick.AddListener(() =>
         {
-            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.Capital);
+            Gameplay.currentProvince.Build(BuildingDatabase.GetById(BuildingId.Capital));
         });
 
         buttonBuildForest.onClick.AddListener(() =>
         {
-            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.Forest);
+            Gameplay.currentProvince.Build(BuildingDatabase.GetById(BuildingId.Forest));
         });
 
         buttonBuildMountains.onClick.AddListener(() =>
         {
-            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.Mountains);
+            Gameplay.currentProvince.Build(BuildingDatabase.GetById(BuildingId.Mountains));
         });
 
         buttonBuildHouse.onClick.AddListener(() =>
         {
-            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.House);
+            Gameplay.currentProvince.Build(BuildingDatabase.GetById(BuildingId.House));
         });
 
         buttonBuildTower.onClick.AddListener(() =>
         {
-            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.Tower);
+            Gameplay.currentProvince.Build(BuildingDatabase.GetById(BuildingId.Tower));
         });
 
         buttonBuildChurch.onClick.AddListener(() =>
         {
-            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.Church);
+            Gameplay.currentProvince.Build(BuildingDatabase.GetById(BuildingId.Church));
         });
 
         buttonRecruit.onClick.AddListener(() =>
         {
-            Gameplay.Recruit(ref Gameplay.currentCountry, ref Gameplay.currentProvince);
+            //Gameplay.Recruit(ref Gameplay.currentCountry, ref Gameplay.currentProvince);
         });
 
         buttonMove.onClick.AddListener(() =>
         {
-            Gameplay.ShowMoveables(Gameplay.currentCountry, Gameplay.currentProvince);
+            //Gameplay.ShowMoveables(Gameplay.currentCountry, Gameplay.currentProvince);
         });
 
         buttonDestroy.onClick.AddListener(() =>
         {
-            Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.None);
+            //Gameplay.Build(ref Gameplay.currentCountry, ref Gameplay.currentProvince, LandmarkId.None);
         });
     }
 
@@ -78,25 +78,25 @@ public class UIDynamicPanel : MonoBehaviour
     {
         Instance.textProvinceName.text = Utility.GetProvinceName(_province);
 
-        bool availableToBuildCapital = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.Capital);
-        bool availableToBuildForest = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.Forest);
-        bool availableToBuildMountains = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.Mountains);
-        bool availableToBuildHouse = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.House);
-        bool availableToBuildTower = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.Tower);
-        bool availableToBuildChurch = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.Church);
-        bool availableToRecruit = Gameplay.AvailableToRecruit(Gameplay.currentCountry, _province);
-        bool availableToMove = Gameplay.AvailableToMove(Gameplay.currentCountry, _province);
-        bool availableToDestroy = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.None); ;
-
+        bool availableToBuildCapital = Gameplay.currentProvince.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Capital));
+        bool availableToBuildForest = Gameplay.currentProvince.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Forest));
+        bool availableToBuildMountains = Gameplay.currentProvince.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Mountains));
+        bool availableToBuildHouse = Gameplay.currentProvince.AvailableToBuild(BuildingDatabase.GetById(BuildingId.House));
+        bool availableToBuildTower = Gameplay.currentProvince.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Tower));
+        bool availableToBuildChurch = Gameplay.currentProvince.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Church));
+        //bool availableToRecruit = Gameplay.AvailableToRecruit(Gameplay.currentCountry, _province);
+        //bool availableToMove = Gameplay.AvailableToMove(Gameplay.currentCountry, _province);
+        //bool availableToDestroy = Gameplay.AvailableToBuild(Gameplay.currentCountry, _province, LandmarkId.None); ;
+        
         Instance.buttonBuildCapital.gameObject.SetActive(availableToBuildCapital);
         Instance.buttonBuildForest.gameObject.SetActive(availableToBuildForest);
         Instance.buttonBuildMountains.gameObject.SetActive(availableToBuildMountains);
         Instance.buttonBuildHouse.gameObject.SetActive(availableToBuildHouse);
         Instance.buttonBuildTower.gameObject.SetActive(availableToBuildTower);
         Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
-        Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
-        Instance.buttonMove.gameObject.SetActive(availableToMove);
-        Instance.buttonDestroy.gameObject.SetActive(availableToDestroy);
+        //Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
+        //Instance.buttonMove.gameObject.SetActive(availableToMove);
+        //Instance.buttonDestroy.gameObject.SetActive(availableToDestroy);
 
         Instance.panelDynamic.SetActive(true);
         UIManager.ShowTileFocus(_province.pos);

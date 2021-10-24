@@ -8,10 +8,10 @@ public class Capital : Building
     [Space(20)]
     public int gold;
 
-    public override void Build(ref Country _country)
+    public override void Build(Province _province)
     {
-        base.Build(ref _country);
+        base.Build(_province);
 
-        _country.gold += gold;
+        _province.owner.gold += gold;
     }
 }

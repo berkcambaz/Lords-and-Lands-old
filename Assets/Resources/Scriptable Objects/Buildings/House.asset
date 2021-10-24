@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: House
   m_EditorClassIdentifier: 
   name: House
+  id: 3
   cost: 2
   income: 0
   manpower: 1
   unique: 0
   recruitable: 1
   unbuildable: 0
+  undestroyable: 0
   offensive: 0
   defensive: 0
   resistance: 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 83caba592facb454ca3932121a68f541, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}

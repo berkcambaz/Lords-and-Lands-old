@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class Building : ScriptableObject
 {
     public new string name;
+    public BuildingId id;
 
     [Space(10)]
     public int cost;
@@ -29,20 +29,22 @@ public class Building : ScriptableObject
     [Space(10)]
     public Sprite sprite;
     public Color color = Color.white;
-    private Tile tile;
+    [System.NonSerialized] public Tile tile;
 
-    public void Init()
+    public virtual void Init()
     {
-        tile = new Tile();
+        tile = CreateInstance<Tile>();
         tile.sprite = sprite;
         tile.color = color;
     }
 
-    public virtual void Build(ref Country _country)
+    public virtual void Build(Province _province)
     {
-        _country.gold -= cost;
-        _country.income += income;
-        _country.manpower += manpower;
+        _province.owner.gold -= cost;
+        _province.owner.income += income;
+        _province.owner.manpower += manpower;
+
+        _province.building = this;
     }
 
     public virtual bool AvailableToBuild(Country _country)
@@ -56,10 +58,12 @@ public class Building : ScriptableObject
         return _country.gold >= cost;
     }
 
-    public virtual void Demolish(ref Country _country)
+    public virtual void Demolish(Province _province)
     {
-        _country.income -= income;
-        _country.manpower -= manpower;
+        _province.owner.income -= income;
+        _province.owner.manpower -= manpower;
+
+        _province.building = null;
     }
 
     public virtual bool AvailableToDemolish()
@@ -71,4 +75,14 @@ public class Building : ScriptableObject
     {
         return true;
     }
+}
+
+public enum BuildingId
+{
+    Capital,
+    Church,
+    Forest,
+    House,
+    Mountains,
+    Tower
 }

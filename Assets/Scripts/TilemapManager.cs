@@ -12,7 +12,6 @@ public class TilemapManager : MonoBehaviour
 
     public TileBase[] provinceTiles;
     public TileBase[] provinceOccupiedTiles;
-    public TileBase[] landmarkTiles;
 
     public void Init()
     {
@@ -34,14 +33,13 @@ public class TilemapManager : MonoBehaviour
             Instance.tilemapProvince.SetTile((Vector3Int)_pos, Instance.provinceTiles[id]);
         }
 
-        id = (int)_province.landmark.id;
-        if (id == (int)LandmarkId.None)
+        if (_province.building == null)
         {
             Instance.tilemapLandmark.SetTile((Vector3Int)_pos, null);
         }
         else
         {
-            Instance.tilemapLandmark.SetTile((Vector3Int)_pos, Instance.landmarkTiles[id]);
+            Instance.tilemapLandmark.SetTile((Vector3Int)_pos, _province.building.tile);
         }
     }
 

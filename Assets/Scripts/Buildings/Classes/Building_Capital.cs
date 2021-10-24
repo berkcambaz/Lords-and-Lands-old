@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Capital", menuName = "Buildings/Capital")]
-public class Capital : Building
+public class Building_Capital : Building
 {
     [Space(20)]
     public int gold;

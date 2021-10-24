@@ -117,8 +117,6 @@ public class Utility
 
     public static bool[] GetMoveableProvinces(Country _country, Province _province)
     {
-        // For a province to be moveable, it should have no allied army
-
         bool[] moveables = new bool[(int)Direction.Count];
 
         Province top = World.GetProvince(_province.pos + Vector2Int.up);
@@ -126,10 +124,10 @@ public class Utility
         Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
         Province left = World.GetProvince(_province.pos + Vector2Int.left);
 
-        moveables[(int)Direction.Top] = top != null && (top.army != null && top.army.country.id != _country.id || top.army == null);
-        moveables[(int)Direction.Right] = right != null && (right.army != null && right.army.country.id != _country.id || right.army == null);
-        moveables[(int)Direction.Bottom] = bottom != null && (bottom.army != null && bottom.army.country.id != _country.id || bottom.army == null);
-        moveables[(int)Direction.Left] = left != null && (left.army != null && left.army.country.id != _country.id || left.army == null);
+        //moveables[(int)Direction.Top] = top != null && (top.army != null && top.army.country.id != _country.id || top.army == null);
+        //moveables[(int)Direction.Right] = right != null && (right.army != null && right.army.country.id != _country.id || right.army == null);
+        //moveables[(int)Direction.Bottom] = bottom != null && (bottom.army != null && bottom.army.country.id != _country.id || bottom.army == null);
+        //moveables[(int)Direction.Left] = left != null && (left.army != null && left.army.country.id != _country.id || left.army == null);
 
         return moveables;
     }
@@ -161,26 +159,26 @@ public class Utility
         Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
         Province left = World.GetProvince(_province.pos + Vector2Int.left);
 
-        if (top != null)
-        {
-            if (top.army != null && top.army.country.id == _province.army.country.id) bonus += 0.5f;
-            else if (top.army != null && top.army.country.id == _enemy.id) bonus -= 1f;
-        }
-        if (right != null)
-        {
-            if (right.army != null && right.army.country.id == _province.army.country.id) bonus += 0.5f;
-            else if (right.army != null && right.army.country.id == _enemy.id) bonus -= 1f;
-        }
-        if (bottom != null)
-        {
-            if (bottom.army != null && bottom.army.country.id == _province.army.country.id) bonus += 0.5f;
-            else if (bottom.army != null && bottom.army.country.id == _enemy.id) bonus -= 1f;
-        }
-        if (left != null)
-        {
-            if (left.army != null && left.army.country.id == _province.army.country.id) bonus += 0.5f;
-            else if (left.army != null && left.army.country.id == _enemy.id) bonus -= 1f;
-        }
+        //if (top != null)
+        //{
+        //    if (top.army != null && top.army.country.id == _province.army.country.id) bonus += 0.5f;
+        //    else if (top.army != null && top.army.country.id == _enemy.id) bonus -= 1f;
+        //}
+        //if (right != null)
+        //{
+        //    if (right.army != null && right.army.country.id == _province.army.country.id) bonus += 0.5f;
+        //    else if (right.army != null && right.army.country.id == _enemy.id) bonus -= 1f;
+        //}
+        //if (bottom != null)
+        //{
+        //    if (bottom.army != null && bottom.army.country.id == _province.army.country.id) bonus += 0.5f;
+        //    else if (bottom.army != null && bottom.army.country.id == _enemy.id) bonus -= 1f;
+        //}
+        //if (left != null)
+        //{
+        //    if (left.army != null && left.army.country.id == _province.army.country.id) bonus += 0.5f;
+        //    else if (left.army != null && left.army.country.id == _enemy.id) bonus -= 1f;
+        //}
 
         return bonus;
     }

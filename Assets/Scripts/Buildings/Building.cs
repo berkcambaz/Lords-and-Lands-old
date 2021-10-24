@@ -47,15 +47,18 @@ public class Building : ScriptableObject
         _province.buildingSlot.building = this;
     }
 
-    public virtual bool AvailableToBuild(Country _country)
+    public virtual bool AvailableToBuild(Province _province)
     {
-        bool alreadyBuilt = unique && Utility.GetAlreadyBuilt(_country, this);
+        bool alreadyBuilt = unique && Utility.GetAlreadyBuilt(_province.owner, this);
         return !unbuildable && !alreadyBuilt;
     }
 
-    public virtual bool CanBuild(Country _country)
+    public virtual bool CanBuild(Province _province)
     {
-        return _country.gold >= cost;
+        // If not enough money
+        if (_province.owner.gold < cost) return false;
+
+        return true;
     }
 
     public virtual void Demolish(Province _province)

@@ -60,7 +60,7 @@ public class UIDynamicPanel : MonoBehaviour
 
         buttonRecruit.onClick.AddListener(() =>
         {
-            //Gameplay.Recruit(ref Gameplay.currentCountry, ref Gameplay.currentProvince);
+            Gameplay.currentProvince.armySlot.Recruit(ArmyDatabase.GetById(ArmyId.Regular));
         });
 
         buttonMove.onClick.AddListener(() =>
@@ -84,7 +84,7 @@ public class UIDynamicPanel : MonoBehaviour
         bool availableToBuildHouse = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.House));
         bool availableToBuildTower = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Tower));
         bool availableToBuildChurch = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Church));
-        //bool availableToRecruit = Gameplay.AvailableToRecruit(Gameplay.currentCountry, _province);
+        bool availableToRecruit = Gameplay.currentProvince.armySlot.AvailableToRecruit(ArmyDatabase.GetById(ArmyId.Regular));
         //bool availableToMove = Gameplay.AvailableToMove(Gameplay.currentCountry, _province);
         bool availableToDemolish = Gameplay.currentProvince.buildingSlot.AvailableToDemolish(); ;
         
@@ -94,7 +94,7 @@ public class UIDynamicPanel : MonoBehaviour
         Instance.buttonBuildHouse.gameObject.SetActive(availableToBuildHouse);
         Instance.buttonBuildTower.gameObject.SetActive(availableToBuildTower);
         Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
-        //Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
+        Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
         //Instance.buttonMove.gameObject.SetActive(availableToMove);
         Instance.buttonDemolish.gameObject.SetActive(availableToDemolish);
 

@@ -5,9 +5,9 @@ using UnityEngine;
 // TODO: Add building states
 public class BuildingSlot 
 {
-    public Building building;
-
     public Province province;
+
+    public Building building;
 
     public BuildingSlot(Province _province)
     {
@@ -32,7 +32,7 @@ public class BuildingSlot
         if (Gameplay.currentCountry.id != province.owner.id) return false;
 
         // If prequisites are not met
-        if (!_building.AvailableToBuild(province.owner)) return false;
+        if (!_building.AvailableToBuild(province)) return false;
 
         // If there is already a building 
         if (building != null) return false;
@@ -43,7 +43,7 @@ public class BuildingSlot
     public bool CanBuild(Building _building)
     {
         // If prequisites are not met
-        if (!_building.CanBuild(province.owner)) return false;
+        if (!_building.CanBuild(province)) return false;
 
         // If province is not free
         if (province.state != ProvinceState.Free) return false;

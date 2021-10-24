@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "House", menuName = "Buildings/House")]
-public class House : Building
+public class Building_House : Building
 {
 
 }

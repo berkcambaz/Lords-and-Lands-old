@@ -34,13 +34,13 @@ public class Gameplay
             currentCountry.gold += currentCountry.income;
 
             // Update the armies
-            for (int i = 0; i < World.provinces.Length; ++i)
-            {
-                if (World.provinces[i].army != null && World.provinces[i].army.country.id == currentCountry.id)
-                {
-                    World.provinces[i].army.Update(ref World.provinces[i]);
-                }
-            }
+            //for (int i = 0; i < World.provinces.Length; ++i)
+            //{
+            //    if (World.provinces[i].army != null && World.provinces[i].army.country.id == currentCountry.id)
+            //    {
+            //        World.provinces[i].army.Update(ref World.provinces[i]);
+            //    }
+            //}
         }
 
         currentCountry = Utility.GetNextCountry(currentCountry);

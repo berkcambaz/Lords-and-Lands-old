@@ -10,8 +10,7 @@ public class Province
     public Country occupier;
 
     public BuildingSlot buildingSlot;
-
-    public Army army;
+    public ArmySlot armySlot;
 
     public Vector2Int pos;
 
@@ -22,47 +21,28 @@ public class Province
         owner = _owner;
 
         buildingSlot = new BuildingSlot(this);
+        armySlot = new ArmySlot(this);
 
         pos = _pos;
     }
 
-    //public float GetOffensive()
-    //{
-    //    if (building == null) return 0f;
-    //
-    //    return building.offensive;
-    //}
-    //public float GetDefensive()
-    //{
-    //    if (building == null) return 0f;
-    //
-    //    return building.defensive;
-    //}
-    //public float GetResistance()
-    //{
-    //    if (building == null) return 0f;
-    //
-    //    return building.resistance;
-    //}
-
-    public void Free()
+    public float GetOffensive()
     {
-
+        if (buildingSlot == null) return 0f;
+    
+        return buildingSlot.building.offensive;
     }
-
-    public void Attack()
+    public float GetDefensive()
     {
+        if (buildingSlot == null) return 0f;
 
+        return buildingSlot.building.defensive;
     }
-
-    public void Occupy()
+    public float GetResistance()
     {
+        if (buildingSlot == null) return 0f;
 
-    }
-
-    public void Surrender()
-    {
-
+        return buildingSlot.building.resistance;
     }
 }
 

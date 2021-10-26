@@ -83,7 +83,7 @@ public class ArmySlot
 
     public bool CanAct()
     {
-        return Utility.GetActableTiles(country, province).Length > 0;
+        return army != null && state == ArmyState.Ready && Utility.GetActableTiles(country, province).Length > 0;
     }
 
     public void Move(Province _province)

@@ -30,6 +30,9 @@ public class ArmySlot
 
         if (state == ArmyState.Ready) exhaust = Mathf.Clamp(exhaust - 0.25f, 0f, 6f);
         state = ArmyState.Ready;
+
+        // Attack the land nonetheless
+        army.AttackLand(province);
     }
 
     public void Recruit(Army _army)

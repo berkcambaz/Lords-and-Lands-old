@@ -13,6 +13,15 @@ public class BuildingSlot
     {
         province = _province;
     }
+    public void AddEffects()
+    {
+        if (building != null) building.AddEffects(province);
+    }
+
+    public void RemoveEffects()
+    {
+        if (building != null) building.RemoveEffects(province);
+    }
 
     public float GetDefensive(Country _country)
     {

@@ -38,11 +38,22 @@ public class Building : ScriptableObject
         tile.color = color;
     }
 
+    public void AddEffects(Province _province)
+    {
+        _province.owner.income += income;
+        _province.owner.manpower += manpower;
+    }
+
+    public void RemoveEffects(Province _province)
+    {
+        _province.owner.income -= income;
+        _province.owner.manpower -= manpower;
+    }
+
     public virtual void Build(Province _province)
     {
         _province.owner.gold -= cost;
-        _province.owner.income += income;
-        _province.owner.manpower += manpower;
+        AddEffects(_province);
 
         _province.buildingSlot.building = this;
     }
@@ -68,8 +79,7 @@ public class Building : ScriptableObject
 
     public virtual void Demolish(Province _province)
     {
-        _province.owner.income -= income;
-        _province.owner.manpower -= manpower;
+        RemoveEffects(_province);
 
         _province.buildingSlot.building = null;
     }

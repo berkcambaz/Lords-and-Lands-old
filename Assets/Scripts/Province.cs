@@ -26,6 +26,31 @@ public class Province
         pos = _pos;
     }
 
+    public void Conquer()
+    {
+        owner = armySlot.country;
+        occupier = null;
+        state = ProvinceState.Free;
+
+        buildingSlot.AddEffects();
+    }
+
+    public void Siege()
+    {
+        occupier = armySlot.country;
+        state = ProvinceState.Occupied;
+
+        buildingSlot.RemoveEffects();
+    }
+
+    public void Unsiege()
+    {
+        occupier = null;
+        state = ProvinceState.Free;
+
+        buildingSlot.AddEffects();
+    }
+
     public bool Actable(Country _country)
     {
         // Actable if there is no army, or an army that is not ours

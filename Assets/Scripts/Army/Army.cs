@@ -168,6 +168,49 @@ public class Army : ScriptableObject
 
         return true;
     }
+
+    public virtual void AttackLand(Province _province)
+    {
+        // If you own the province and it's free
+        if (_province.owner.id == _province.armySlot.country.id && _province.state == ProvinceState.Free) return;
+
+        float allyDice = Gameplay.srandom.Dice();
+        float enemyDice = Gameplay.srandom.Dice();
+
+        // Add breakthrough to ally & resistance to enemy
+        allyDice = _province.armySlot.army.breakthrough;
+        enemyDice = _province.buildingSlot.GetResistance();
+
+        // Subtract exhaust from the ally
+        allyDice -= _province.armySlot.exhaust;
+
+        // Add support bonus to ally
+        allyDice += Utility.GetSupportBonus(_province, _province.owner);
+
+        if (allyDice > enemyDice)
+        {
+            // If unsieging own land
+            if (_province.owner.id == _province.armySlot.country.id)
+            {
+                _province.Unsiege();
+            }
+            // If sieging unsieged land
+            else if (_province.occupier == null)
+            {
+                _province.Siege();
+            }
+            // If sieging land sieged by somebody else
+            else if (_province.occupier.id != _province.armySlot.country.id)
+            {
+                _province.Siege();
+            }
+            // If conquering sieged
+            else
+            {
+                _province.Conquer();
+            }
+        }
+    }
 }
 
 //_province.army.country.army -= 1;

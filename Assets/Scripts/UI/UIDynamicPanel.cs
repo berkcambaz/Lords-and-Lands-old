@@ -18,7 +18,7 @@ public class UIDynamicPanel : MonoBehaviour
     public Button buttonBuildTower;
     public Button buttonBuildChurch;
     public Button buttonRecruit;
-    public Button buttonMove;
+    public Button buttonAct;
     public Button buttonDemolish;
 
     public Image imageRecruitArmy;
@@ -63,9 +63,9 @@ public class UIDynamicPanel : MonoBehaviour
             Gameplay.currentProvince.armySlot.Recruit(ArmyDatabase.GetById(ArmyId.Regular));
         });
 
-        buttonMove.onClick.AddListener(() =>
+        buttonAct.onClick.AddListener(() =>
         {
-            //Gameplay.ShowMoveables(Gameplay.currentCountry, Gameplay.currentProvince);
+            Gameplay.currentProvince.armySlot.ShowActables();
         });
 
         buttonDemolish.onClick.AddListener(() =>
@@ -85,8 +85,8 @@ public class UIDynamicPanel : MonoBehaviour
         bool availableToBuildTower = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Tower));
         bool availableToBuildChurch = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Church));
         bool availableToRecruit = Gameplay.currentProvince.armySlot.AvailableToRecruit(ArmyDatabase.GetById(ArmyId.Regular));
-        //bool availableToMove = Gameplay.AvailableToMove(Gameplay.currentCountry, _province);
-        bool availableToDemolish = Gameplay.currentProvince.buildingSlot.AvailableToDemolish(); ;
+        bool availableToAct = Gameplay.currentProvince.armySlot.AvailableToAct();
+        bool availableToDemolish = Gameplay.currentProvince.buildingSlot.AvailableToDemolish();
         
         Instance.buttonBuildCapital.gameObject.SetActive(availableToBuildCapital);
         Instance.buttonBuildForest.gameObject.SetActive(availableToBuildForest);
@@ -95,8 +95,28 @@ public class UIDynamicPanel : MonoBehaviour
         Instance.buttonBuildTower.gameObject.SetActive(availableToBuildTower);
         Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
         Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
-        //Instance.buttonMove.gameObject.SetActive(availableToMove);
+        Instance.buttonAct.gameObject.SetActive(availableToAct);
         Instance.buttonDemolish.gameObject.SetActive(availableToDemolish);
+
+        bool canBuildCapital = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Capital));
+        bool canBuildForest = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Forest));
+        bool canBuildMountains = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Mountains));
+        bool canBuildHouse = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.House));
+        bool canBuildTower = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Tower));
+        bool canBuildChurch = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Church));
+        bool canRecruit = Gameplay.currentProvince.armySlot.CanRecruit(ArmyDatabase.GetById(ArmyId.Regular));
+        bool canAct = Gameplay.currentProvince.armySlot.CanAct();
+        bool canDemolish = Gameplay.currentProvince.buildingSlot.CanDemolish();
+
+        Utility.ToggleButtonColor(Instance.buttonBuildCapital, canBuildCapital);
+        Utility.ToggleButtonColor(Instance.buttonBuildForest, canBuildForest);
+        Utility.ToggleButtonColor(Instance.buttonBuildMountains, canBuildMountains);
+        Utility.ToggleButtonColor(Instance.buttonBuildHouse, canBuildHouse);
+        Utility.ToggleButtonColor(Instance.buttonBuildTower, canBuildTower);
+        Utility.ToggleButtonColor(Instance.buttonBuildChurch, canBuildChurch);
+        Utility.ToggleButtonColor(Instance.buttonRecruit, canRecruit);
+        Utility.ToggleButtonColor(Instance.buttonAct, canAct);
+        Utility.ToggleButtonColor(Instance.buttonDemolish, canDemolish);
 
         Instance.panelDynamic.SetActive(true);
         UIManager.ShowTileFocus(_province.pos);

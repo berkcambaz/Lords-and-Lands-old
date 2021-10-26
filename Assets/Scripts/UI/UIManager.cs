@@ -13,11 +13,11 @@ public class UIManager : MonoBehaviour
     public GameObject tileHighlight;
     public GameObject tileFocus;
 
-    public GameObject moveableTiles;
-    public GameObject tileTop;
-    public GameObject tileRight;
-    public GameObject tileBottom;
-    public GameObject tileLeft;
+    public GameObject actionTileContainer;
+    public GameObject actionTileTop;
+    public GameObject actionTileRight;
+    public GameObject actionTileBottom;
+    public GameObject actionTileLeft;
 
     public UIMenu uiMenu;
     public UIDynamicPanel uiDynanamicPanel;
@@ -78,20 +78,32 @@ public class UIManager : MonoBehaviour
         Instance.tileFocus.SetActive(false);
     }
 
-    public static void ShowMoveableTiles(Vector2 _pos, bool[] _moveables)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="_province"></param>
+    /// <returns>Number of actable tiles.</returns>
+    public static void ShowActionTiles(Province _province, bool[] _actables)
     {
-        Instance.tileTop.SetActive(_moveables[(int)Direction.Top]);
-        Instance.tileRight.SetActive(_moveables[(int)Direction.Right]);
-        Instance.tileBottom.SetActive(_moveables[(int)Direction.Bottom]);
-        Instance.tileLeft.SetActive(_moveables[(int)Direction.Left]);
+        Vector2Int pos = _province.pos;
 
-        Instance.moveableTiles.transform.position = _pos + new Vector2(0.5f, 0.5f);
+        Instance.actionTileTop.SetActive(_actables[(int)Direction.Top]);
+        Instance.actionTileRight.SetActive(_actables[(int)Direction.Right]);
+        Instance.actionTileBottom.SetActive(_actables[(int)Direction.Bottom]);
+        Instance.actionTileLeft.SetActive(_actables[(int)Direction.Left]);
 
-        Instance.moveableTiles.SetActive(true);
+        Instance.actionTileContainer.transform.position = pos + new Vector2(0.5f, 0.5f);
+
+        Instance.actionTileContainer.SetActive(true);
     }
 
-    public static void HideMoveableTiles()
+    public static void HideActionTiles()
     {
-        Instance.moveableTiles.SetActive(false);
+        Instance.actionTileTop.SetActive(false);
+        Instance.actionTileRight.SetActive(false);
+        Instance.actionTileBottom.SetActive(false);
+        Instance.actionTileLeft.SetActive(false);
+
+        Instance.actionTileContainer.SetActive(false);
     }
 }

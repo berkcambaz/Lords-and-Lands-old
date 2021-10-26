@@ -26,23 +26,10 @@ public class Province
         pos = _pos;
     }
 
-    public float GetOffensive()
+    public bool Actable(Country _country)
     {
-        if (buildingSlot == null) return 0f;
-    
-        return buildingSlot.building.offensive;
-    }
-    public float GetDefensive()
-    {
-        if (buildingSlot == null) return 0f;
-
-        return buildingSlot.building.defensive;
-    }
-    public float GetResistance()
-    {
-        if (buildingSlot == null) return 0f;
-
-        return buildingSlot.building.resistance;
+        // Actable if there is no army, or an army that is not ours
+        return armySlot.army == null || armySlot.country.id != _country.id;
     }
 }
 

@@ -214,7 +214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &11210942
 Transform:
   m_ObjectHideFlags: 0
@@ -879,7 +879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &198413031
 Transform:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &271207029
 Transform:
   m_ObjectHideFlags: 0
@@ -4587,7 +4587,7 @@ GameObject:
   - component: {fileID: 917106280}
   - component: {fileID: 917106279}
   m_Layer: 5
-  m_Name: Button Move Army
+  m_Name: Button Act
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4820,7 +4820,7 @@ MonoBehaviour:
   buttonBuildTower: {fileID: 1711310703}
   buttonBuildChurch: {fileID: 365864415}
   buttonRecruit: {fileID: 591241492}
-  buttonMove: {fileID: 917106280}
+  buttonAct: {fileID: 917106280}
   buttonDemolish: {fileID: 399977104}
   imageRecruitArmy: {fileID: 1492754102}
   imageMoveArmy: {fileID: 1847920801}
@@ -5262,11 +5262,11 @@ MonoBehaviour:
   canvasHUD: {fileID: 1904965318}
   tileHighlight: {fileID: 1440772172}
   tileFocus: {fileID: 302109536}
-  moveableTiles: {fileID: 1616467587}
-  tileTop: {fileID: 1720553164}
-  tileRight: {fileID: 198413030}
-  tileBottom: {fileID: 11210941}
-  tileLeft: {fileID: 271207028}
+  actionTileContainer: {fileID: 1616467587}
+  actionTileTop: {fileID: 1720553164}
+  actionTileRight: {fileID: 198413030}
+  actionTileBottom: {fileID: 11210941}
+  actionTileLeft: {fileID: 271207028}
   uiMenu: {fileID: 923254762}
   uiDynanamicPanel: {fileID: 934800451}
   uiRoundPanel: {fileID: 1269196228}
@@ -5745,7 +5745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c458b902111e9b3459c9e2b2bac4c640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  landmarkSprites: []
   armySprites:
   - {fileID: 21300000, guid: 3bc6bf301f74baf4cb25952e910952bb, type: 3}
   - {fileID: 21300000, guid: 9bfb6656ad1975f4da6e4593f277b1f5, type: 3}
@@ -5942,7 +5941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f3aadb3f5e2a4408905b57e68cb57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabArmy: {fileID: 8183624062670088732, guid: 512534d9ffcb89d48b14a9843f6ccc11, type: 3}
 --- !u!1 &1400225521
 GameObject:
   m_ObjectHideFlags: 0
@@ -7640,7 +7638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1616467588}
   m_Layer: 0
-  m_Name: 'Moveable Tiles '
+  m_Name: 'Actable Tiles '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8207,7 +8205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1720553165
 Transform:
   m_ObjectHideFlags: 0

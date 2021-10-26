@@ -10,6 +10,7 @@ public class Gameplay
     public static Province currentProvince;
 
     public static bool started = false;
+    public static bool acting = false;
 
     public static void Start()
     {
@@ -34,17 +35,18 @@ public class Gameplay
             currentCountry.gold += currentCountry.income;
 
             // Update the armies
-            //for (int i = 0; i < World.provinces.Length; ++i)
-            //{
-            //    if (World.provinces[i].army != null && World.provinces[i].army.country.id == currentCountry.id)
-            //    {
-            //        World.provinces[i].army.Update(ref World.provinces[i]);
-            //    }
-            //}
+            for (int i = 0; i < World.provinces.Length; ++i)
+            {
+                if (World.provinces[i].armySlot.army != null && World.provinces[i].armySlot.country.id == currentCountry.id)
+                {
+                    World.provinces[i].armySlot.Update();
+                }
+            }
         }
 
         currentCountry = Utility.GetNextCountry(currentCountry);
         currentProvince = null;
+        acting = false;
 
         // Update UI
         UIDynamicPanel.UpdateArmyImage(currentCountry);
@@ -61,6 +63,15 @@ public class Gameplay
     {
         // If the game hasn't started
         if (!started) return;
+
+        if (acting)
+        {
+            if (_province.armySlot.army != null) currentProvince.armySlot.Attack(_province);
+            else currentProvince.armySlot.Move(_province);
+
+            UIManager.HideActionTiles();
+            acting = false;
+        }
 
         if (currentProvince == _province || _province == null)
         {

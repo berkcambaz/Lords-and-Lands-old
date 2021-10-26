@@ -42,7 +42,7 @@ public class Utility
         return World.countries[(id + 1) % World.countryCount];
     }
 
-    public static void ToggleButtonColor(ref Button _button, bool _active)
+    public static void ToggleButtonColor(Button _button, bool _active)
     {
         ColorBlock colors = _button.colors;
 
@@ -115,41 +115,6 @@ public class Utility
         return name;
     }
 
-    public static bool[] GetMoveableProvinces(Country _country, Province _province)
-    {
-        bool[] moveables = new bool[(int)Direction.Count];
-
-        Province top = World.GetProvince(_province.pos + Vector2Int.up);
-        Province right = World.GetProvince(_province.pos + Vector2Int.right);
-        Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
-        Province left = World.GetProvince(_province.pos + Vector2Int.left);
-
-        //moveables[(int)Direction.Top] = top != null && (top.army != null && top.army.country.id != _country.id || top.army == null);
-        //moveables[(int)Direction.Right] = right != null && (right.army != null && right.army.country.id != _country.id || right.army == null);
-        //moveables[(int)Direction.Bottom] = bottom != null && (bottom.army != null && bottom.army.country.id != _country.id || bottom.army == null);
-        //moveables[(int)Direction.Left] = left != null && (left.army != null && left.army.country.id != _country.id || left.army == null);
-
-        return moveables;
-    }
-
-    public static int GetMoveableProvinceCount(Country _country, Province _province)
-    {
-        bool[] moveables = GetMoveableProvinces(_country, _province);
-        int moveableCount = 0;
-
-        for (int i = 0; i < moveables.Length; ++i)
-        {
-            if (moveables[i]) moveableCount++;
-        }
-
-        return moveableCount;
-    }
-
-    public static float GetProvinceDistance(Province _a, Province _b)
-    {
-        return (_a.pos - _b.pos).magnitude;
-    }
-
     public static float GetSupportBonus(Province _province, Country _enemy)
     {
         float bonus = 0f;
@@ -194,6 +159,28 @@ public class Utility
         }
 
         return false;
+    }
+
+    public static bool[] GetActableTiles(Country _country, Province _province)
+    {
+        bool[] moveables = new bool[(int)Direction.Count];
+
+        Province top = World.GetProvince(_province.pos + Vector2Int.up);
+        Province right = World.GetProvince(_province.pos + Vector2Int.right);
+        Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
+        Province left = World.GetProvince(_province.pos + Vector2Int.left);
+
+        moveables[(int)Direction.Top] = top != null && top.Actable(_country);
+        moveables[(int)Direction.Right] = right != null && right.Actable(_country);
+        moveables[(int)Direction.Bottom] = bottom != null && bottom.Actable(_country);
+        moveables[(int)Direction.Left] = left != null && left.Actable(_country);
+
+        return moveables;
+    }
+
+    public static float GetProvinceDistance(Province _a, Province _b)
+    {
+        return (_a.pos - _b.pos).magnitude;
     }
 }
 

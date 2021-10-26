@@ -55,25 +55,25 @@ public class MENU_New : MonoBehaviour
     public static void ToggleCountryGreen()
     {
         Instance.countryGreen = !Instance.countryGreen;
-        Utility.ToggleButtonColor(ref Instance.buttonCountryGreen, Instance.countryGreen);
+        Utility.ToggleButtonColor(Instance.buttonCountryGreen, Instance.countryGreen);
     }
 
     public static void ToggleCountryPurple()
     {
         Instance.countryPurple = !Instance.countryPurple;
-        Utility.ToggleButtonColor(ref Instance.buttonCountryPurple, Instance.countryPurple);
+        Utility.ToggleButtonColor(Instance.buttonCountryPurple, Instance.countryPurple);
     }
 
     public static void ToggleCountryRed()
     {
         Instance.countryRed = !Instance.countryRed;
-        Utility.ToggleButtonColor(ref Instance.buttonCountryRed, Instance.countryRed);
+        Utility.ToggleButtonColor(Instance.buttonCountryRed, Instance.countryRed);
     }
 
     public static void ToggleCountryYellow()
     {
         Instance.countryYellow = !Instance.countryYellow;
-        Utility.ToggleButtonColor(ref Instance.buttonCountryYellow, Instance.countryYellow);
+        Utility.ToggleButtonColor(Instance.buttonCountryYellow, Instance.countryYellow);
     }
 
     public static void IncreaseWidth()

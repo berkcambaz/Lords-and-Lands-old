@@ -92,6 +92,12 @@ public class Army : ScriptableObject
     {
         // Transfer the army to the new province and delete old army
         MoveArmy(_provinceFrom, _provinceTo);
+
+        // If the old province was attack by our army, now it's not
+        if (_provinceFrom.state == ProvinceState.Attacked) _provinceFrom.state = ProvinceState.Free;
+
+        // If the new province is not attacked, it's now attacked by our army
+        if (_provinceTo.state == ProvinceState.Free) _provinceTo.state = ProvinceState.Attacked;
     }
 
     public virtual bool AvailableToMove()
@@ -178,14 +184,15 @@ public class Army : ScriptableObject
         float enemyDice = Gameplay.srandom.Dice();
 
         // Add breakthrough to ally & resistance to enemy
-        allyDice = _province.armySlot.army.breakthrough;
-        enemyDice = _province.buildingSlot.GetResistance();
+        allyDice += _province.armySlot.army.breakthrough;
+        enemyDice += _province.buildingSlot.GetResistance();
 
         // Subtract exhaust from the ally
         allyDice -= _province.armySlot.exhaust;
 
         // Add support bonus to ally
         allyDice += Utility.GetSupportBonus(_province, _province.owner);
+
 
         if (allyDice > enemyDice)
         {
@@ -210,6 +217,8 @@ public class Army : ScriptableObject
                 _province.Conquer();
             }
         }
+
+        TilemapManager.UpdateProvinceTile(_province);
     }
 }
 

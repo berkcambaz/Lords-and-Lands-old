@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ed0cde0a12a8c41906306bc6529bf0, type: 3}
-  m_Name: Regular
+  m_Script: {fileID: 11500000, guid: c6f52ca678c345e4caafc27e3c105256, type: 3}
+  m_Name: Archer
   m_EditorClassIdentifier: 
-  name: Regular
-  id: 0
-  cost: 2
+  name: Archer
+  id: 3
+  cost: 0
   offensive: 0
   defensive: 0
   breakthrough: 0
-  prefab: {fileID: 7189946481101779980, guid: f31633174ba6456409192fafb392071c, type: 3}
+  prefab: {fileID: 4233445490366673134, guid: 5129970d9ed1bbe49821b2dd0213f7ad, type: 3}

@@ -5,7 +5,7 @@ using System;
 
 public class ArmyDatabase
 {
-    private static Army[] armies;
+    public static Army[] armies;
 
     public static void Init()
     {

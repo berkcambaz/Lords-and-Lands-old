@@ -230,7 +230,11 @@ public class Army : ScriptableObject
 
 public enum ArmyId
 {
-    Regular
+    Regular,
+    Swordman,
+    Spearman,
+    Archer,
+    Knight
 }
 
 public enum ArmyState

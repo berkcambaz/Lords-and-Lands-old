@@ -9,7 +9,6 @@ public class Army : ScriptableObject
 
     [Space(10)]
     public int cost;
-    public int manpowerCost;
 
     [Space(10)]
     public float offensive;
@@ -49,7 +48,7 @@ public class Army : ScriptableObject
     public virtual void Recruit(Province _province)
     {
         _province.owner.gold -= cost;
-        _province.owner.army += manpowerCost;
+        _province.owner.army += 1;
 
         CreateArmy(this, _province.owner, _province, 0f, ArmyState.Unready);
     }
@@ -68,7 +67,7 @@ public class Army : ScriptableObject
         if (_province.owner.gold < cost) return false;
 
         // If not enough manpower
-        if (_province.owner.army + manpowerCost > _province.owner.manpower) return false;
+        if (_province.owner.army + 1 > _province.owner.manpower) return false;
 
         return true;
     }

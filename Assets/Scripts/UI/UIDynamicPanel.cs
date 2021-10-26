@@ -78,26 +78,6 @@ public class UIDynamicPanel : MonoBehaviour
     {
         Instance.textProvinceName.text = Utility.GetProvinceName(_province);
 
-        bool availableToBuildCapital = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Capital));
-        bool availableToBuildForest = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Forest));
-        bool availableToBuildMountains = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Mountains));
-        bool availableToBuildHouse = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.House));
-        bool availableToBuildTower = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Tower));
-        bool availableToBuildChurch = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Church));
-        bool availableToRecruit = Gameplay.currentProvince.armySlot.AvailableToRecruit(ArmyDatabase.GetById(ArmyId.Regular));
-        bool availableToAct = Gameplay.currentProvince.armySlot.AvailableToAct();
-        bool availableToDemolish = Gameplay.currentProvince.buildingSlot.AvailableToDemolish();
-        
-        Instance.buttonBuildCapital.gameObject.SetActive(availableToBuildCapital);
-        Instance.buttonBuildForest.gameObject.SetActive(availableToBuildForest);
-        Instance.buttonBuildMountains.gameObject.SetActive(availableToBuildMountains);
-        Instance.buttonBuildHouse.gameObject.SetActive(availableToBuildHouse);
-        Instance.buttonBuildTower.gameObject.SetActive(availableToBuildTower);
-        Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
-        Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
-        Instance.buttonAct.gameObject.SetActive(availableToAct);
-        Instance.buttonDemolish.gameObject.SetActive(availableToDemolish);
-
         bool canBuildCapital = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Capital));
         bool canBuildForest = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Forest));
         bool canBuildMountains = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Mountains));
@@ -117,6 +97,28 @@ public class UIDynamicPanel : MonoBehaviour
         Utility.ToggleButtonColor(Instance.buttonRecruit, canRecruit);
         Utility.ToggleButtonColor(Instance.buttonAct, canAct);
         Utility.ToggleButtonColor(Instance.buttonDemolish, canDemolish);
+
+
+
+        bool availableToBuildCapital = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Capital));
+        bool availableToBuildForest = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Forest));
+        bool availableToBuildMountains = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Mountains));
+        bool availableToBuildHouse = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.House));
+        bool availableToBuildTower = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Tower));
+        bool availableToBuildChurch = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Church));
+        bool availableToRecruit = Gameplay.currentProvince.armySlot.AvailableToRecruit(ArmyDatabase.GetById(ArmyId.Regular));
+        bool availableToAct = Gameplay.currentProvince.armySlot.AvailableToAct();
+        bool availableToDemolish = Gameplay.currentProvince.buildingSlot.AvailableToDemolish();
+        
+        Instance.buttonBuildCapital.gameObject.SetActive(availableToBuildCapital);
+        Instance.buttonBuildForest.gameObject.SetActive(availableToBuildForest);
+        Instance.buttonBuildMountains.gameObject.SetActive(availableToBuildMountains);
+        Instance.buttonBuildHouse.gameObject.SetActive(availableToBuildHouse);
+        Instance.buttonBuildTower.gameObject.SetActive(availableToBuildTower);
+        Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
+        Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
+        Instance.buttonAct.gameObject.SetActive(availableToAct);
+        Instance.buttonDemolish.gameObject.SetActive(availableToDemolish);
 
         Instance.panelDynamic.SetActive(true);
         UIManager.ShowTileFocus(_province.pos);

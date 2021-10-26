@@ -115,39 +115,6 @@ public class Utility
         return name;
     }
 
-    public static float GetSupportBonus(Province _province, Country _enemy)
-    {
-        float bonus = 0f;
-
-        Province top = World.GetProvince(_province.pos + Vector2Int.up);
-        Province right = World.GetProvince(_province.pos + Vector2Int.right);
-        Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
-        Province left = World.GetProvince(_province.pos + Vector2Int.left);
-
-        //if (top != null)
-        //{
-        //    if (top.army != null && top.army.country.id == _province.army.country.id) bonus += 0.5f;
-        //    else if (top.army != null && top.army.country.id == _enemy.id) bonus -= 1f;
-        //}
-        //if (right != null)
-        //{
-        //    if (right.army != null && right.army.country.id == _province.army.country.id) bonus += 0.5f;
-        //    else if (right.army != null && right.army.country.id == _enemy.id) bonus -= 1f;
-        //}
-        //if (bottom != null)
-        //{
-        //    if (bottom.army != null && bottom.army.country.id == _province.army.country.id) bonus += 0.5f;
-        //    else if (bottom.army != null && bottom.army.country.id == _enemy.id) bonus -= 1f;
-        //}
-        //if (left != null)
-        //{
-        //    if (left.army != null && left.army.country.id == _province.army.country.id) bonus += 0.5f;
-        //    else if (left.army != null && left.army.country.id == _enemy.id) bonus -= 1f;
-        //}
-
-        return bonus;
-    }
-
     public static bool GetAlreadyBuilt(Country _country, Building _building)
     {
         for (int i = 0; i < World.provinces.Length; ++i)
@@ -176,6 +143,39 @@ public class Utility
         moveables[(int)Direction.Left] = left != null && left.Actable(_country);
 
         return moveables;
+    }
+
+    public static float GetSupportBonus(Province _province, Country _enemy)
+    {
+        float bonus = 0f;
+
+        Province top = World.GetProvince(_province.pos + Vector2Int.up);
+        Province right = World.GetProvince(_province.pos + Vector2Int.right);
+        Province bottom = World.GetProvince(_province.pos + Vector2Int.down);
+        Province left = World.GetProvince(_province.pos + Vector2Int.left);
+
+        if (top != null)
+        {
+            if (top.armySlot.army != null && top.armySlot.country.id == _province.armySlot.country.id) bonus += 0.5f;
+            else if (top.armySlot.army != null && top.armySlot.country.id == _enemy.id) bonus -= 1f;
+        }
+        if (right != null)
+        {
+            if (right.armySlot.army != null && right.armySlot.country.id == _province.armySlot.country.id) bonus += 0.5f;
+            else if (right.armySlot.army != null && right.armySlot.country.id == _enemy.id) bonus -= 1f;
+        }
+        if (bottom != null)
+        {
+            if (bottom.armySlot.army != null && bottom.armySlot.country.id == _province.armySlot.country.id) bonus += 0.5f;
+            else if (bottom.armySlot.army != null && bottom.armySlot.country.id == _enemy.id) bonus -= 1f;
+        }
+        if (left != null)
+        {
+            if (left.armySlot.army != null && left.armySlot.country.id == _province.armySlot.country.id) bonus += 0.5f;
+            else if (left.armySlot.army != null && left.armySlot.country.id == _enemy.id) bonus -= 1f;
+        }
+
+        return bonus;
     }
 
     public static float GetProvinceDistance(Province _a, Province _b)

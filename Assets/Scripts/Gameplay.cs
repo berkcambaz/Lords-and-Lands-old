@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gameplay
 {
-    private static SeedRandom srandom;
+    public static SeedRandom srandom;
 
     public static Country currentCountry;
     public static Province currentProvince;

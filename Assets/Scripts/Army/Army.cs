@@ -26,6 +26,9 @@ public class Army : ScriptableObject
         _province.armySlot.state = _state;
 
         _province.armySlot.gameobject = ArmyManager.InstantiateArmy(_province);
+
+        // Increase the army size by 1
+        _province.owner.army += 1;
     }
 
     public void MoveArmy(Province _provinceFrom, Province _provinceTo)
@@ -45,10 +48,23 @@ public class Army : ScriptableObject
         ArmyManager.MoveArmy(_provinceTo);
     }
 
+    public void DestroyArmy(Province _province)
+    {
+        ArmyManager.DestroyArmy(_province);
+
+        // Decrease the army size by 1
+        _province.armySlot.country.army -= 1;
+
+        _province.armySlot.gameobject = null;
+        _province.armySlot.army = null;
+        _province.armySlot.country = null;
+        _province.armySlot.exhaust = 0f;
+        _province.armySlot.state = ArmyState.Unready;
+    }
+
     public virtual void Recruit(Province _province)
     {
         _province.owner.gold -= cost;
-        _province.owner.army += 1;
 
         CreateArmy(this, _province.owner, _province, 0f, ArmyState.Unready);
     }
@@ -96,7 +112,45 @@ public class Army : ScriptableObject
 
     public virtual void Attack(Province _provinceFrom, Province _provinceTo)
     {
+        float allyDice = Gameplay.srandom.Dice();
+        float enemyDice = Gameplay.srandom.Dice();
 
+        // Add offensive for ally & defensive for enemy
+        allyDice += _provinceFrom.armySlot.army.offensive;
+        enemyDice += _provinceTo.armySlot.army.defensive;
+
+        // Add land bonuses
+        allyDice += _provinceFrom.buildingSlot.GetOffensive(_provinceFrom.armySlot.country);
+        enemyDice += _provinceTo.buildingSlot.GetDefensive(_provinceTo.armySlot.country);
+
+        // Add support bonuses
+        allyDice += Utility.GetSupportBonus(_provinceFrom, _provinceTo.armySlot.country);
+        enemyDice += Utility.GetSupportBonus(_provinceTo, _provinceFrom.armySlot.country);
+
+        // Subtract exhaust modifier from enemy
+        enemyDice -= _provinceTo.armySlot.exhaust;
+
+        if (allyDice > enemyDice)
+        {
+            DestroyArmy(_provinceTo);
+            MoveArmy(_provinceFrom, _provinceTo);
+        }
+        else if (allyDice == enemyDice)
+        {
+            // Add exhaust to enemy
+            _provinceTo.armySlot.exhaust += 0.75f;
+
+            // Set state of ally to unready
+            _provinceFrom.armySlot.state = ArmyState.Unready;
+        }
+        else if (allyDice < enemyDice)
+        {
+            // Destroy ally army
+            DestroyArmy(_provinceFrom);
+
+            // Add exhaust to enemy
+            _provinceTo.armySlot.exhaust += 0.5f;
+        }
     }
 
     public virtual bool AvailableToAttack()
@@ -106,6 +160,12 @@ public class Army : ScriptableObject
 
     public virtual bool CanAttack(Province _provinceFrom, Province _provinceTo)
     {
+        // If army is not in ready state
+        if (_provinceFrom.armySlot.state != ArmyState.Ready) return false;
+
+        // If distance is not in range
+        if (Utility.GetProvinceDistance(_provinceFrom, _provinceTo) != 1f) return false;
+
         return true;
     }
 }

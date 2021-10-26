@@ -14,6 +14,34 @@ public class BuildingSlot
         province = _province;
     }
 
+    public float GetDefensive(Country _country)
+    {
+        // If there is no building
+        if (building == null) return 0;
+
+        // If building is not yours or not occupied by you
+        if (province.owner.id != _country.id || (province.occupier != null && province.occupier.id != _country.id)) return 0;
+
+        return building.defensive;
+    }
+
+    public float GetOffensive(Country _country)
+    {
+        // If there is no building
+        if (building == null) return 0;
+
+        // If building is not yours or not occupied by you
+        if (province.owner.id != _country.id || (province.occupier != null && province.occupier.id != _country.id)) return 0;
+
+        return building.offensive;
+    }
+
+    public float GetResistance()
+    {
+        if (building == null) return 0;
+        return building.resistance;
+    }
+
     public void Build(Building _building)
     {
         if (!CanBuild(_building)) return;

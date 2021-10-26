@@ -48,6 +48,9 @@ public class Gameplay
         currentProvince = null;
         acting = false;
 
+        // Hide action tiles since they might remain shown after passing the turn
+        UIManager.HideActionTiles();
+
         // Update UI
         UIDynamicPanel.UpdateArmyImage(currentCountry);
         UIStatPanel.UpdateCountryImage(currentCountry);

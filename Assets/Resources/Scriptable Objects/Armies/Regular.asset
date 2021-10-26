@@ -15,10 +15,7 @@ MonoBehaviour:
   name: Regular
   id: 0
   cost: 2
-  manpowerCost: 1
   offensive: 0
   defensive: 0
   breakthrough: 0
-  moveRange: 4
-  offensiveRange: 4
-  prefab: {fileID: 8183624062670088732, guid: 512534d9ffcb89d48b14a9843f6ccc11, type: 3}
+  prefab: {fileID: 6345126865337806749, guid: 0767de1550113dc469719a7bec4f9d8f, type: 3}

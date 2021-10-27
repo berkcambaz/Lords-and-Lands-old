@@ -180,6 +180,9 @@ public class Army : ScriptableObject
         // If you own the province and it's free
         if (_province.owner.id == _province.armySlot.country.id && _province.state == ProvinceState.Free) return;
 
+        // If army is not ready
+        if (_province.armySlot.state != ArmyState.Ready) return;
+
         float allyDice = Gameplay.srandom.Dice();
         float enemyDice = Gameplay.srandom.Dice();
 

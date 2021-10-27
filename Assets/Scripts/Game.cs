@@ -17,15 +17,15 @@ public class Game : MonoBehaviour
     {
         Instance = this;
 
+        // Initialize databases
+        ArmyDatabase.Init();
+        BuildingDatabase.Init();
+
         // Initialize managers
         tilemapManager.Init();
         uiManager.Init();
         assetManager.Init();
         armyManager.Init();
-
-        // Initialize databases
-        ArmyDatabase.Init();
-        BuildingDatabase.Init();
     }
 
     public static void Quit()

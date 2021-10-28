@@ -132,6 +132,8 @@ public class UIDynamicPanel : MonoBehaviour
 
     public static void UpdateDiplomacy()
     {
+        if (Gameplay.currentProvince == null) return;
+
         //bool available = false;
         //bool can = false;
     }
@@ -149,6 +151,8 @@ public class UIDynamicPanel : MonoBehaviour
 
     public static void UpdateBuilding()
     {
+        if (Gameplay.currentProvince == null) return;
+
         bool available = false;
         bool can = false;
 
@@ -186,6 +190,8 @@ public class UIDynamicPanel : MonoBehaviour
 
     public static void UpdateArmy()
     {
+        if (Gameplay.currentProvince == null) return;
+
         bool available = false;
         bool can = false;
 

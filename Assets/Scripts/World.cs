@@ -158,11 +158,13 @@ public static class World
     {
         for (int i = 0; i < width * height; ++i)
         {
-            //provinces[i].landmark.id = (LandmarkId)srandom.Percent(new int[,] {
-            //    { 75, (int)LandmarkId.None },
-            //    { 15, (int)LandmarkId.Forest },
-            //    { 10, (int)LandmarkId.Mountains }
-            //});
+            int id = srandom.Percent(new int[,] {
+                { 90, -1 },
+                { 5, (int)BuildingId.Forest },
+                { 5, (int)BuildingId.Mountains }
+            });
+
+            if (id != -1) provinces[i].buildingSlot.Build(BuildingDatabase.buildings[id]);
         }
     }
 

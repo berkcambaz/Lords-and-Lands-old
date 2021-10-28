@@ -18,4 +18,4 @@ MonoBehaviour:
   offensive: 0
   defensive: 0
   breakthrough: 0
-  prefab: {fileID: 7189946481101779980, guid: f31633174ba6456409192fafb392071c, type: 3}
+  prefab: {fileID: 6063730349285105666, guid: 4db9f82e4fc0bce45851fe33fc07e6ee, type: 3}

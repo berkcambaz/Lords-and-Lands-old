@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Swordman
   id: 1
-  cost: 0
-  offensive: 0
+  cost: 4
+  offensive: 1
   defensive: 0
-  breakthrough: 0
-  prefab: {fileID: 0}
+  breakthrough: 1
+  prefab: {fileID: 8183624062670088732, guid: 512534d9ffcb89d48b14a9843f6ccc11, type: 3}

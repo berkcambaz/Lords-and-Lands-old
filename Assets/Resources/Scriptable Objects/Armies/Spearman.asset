@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Spearman
   id: 2
-  cost: 0
-  offensive: 0
+  cost: 6
+  offensive: 2
   defensive: 0
-  breakthrough: 0
-  prefab: {fileID: 0}
+  breakthrough: 2
+  prefab: {fileID: 6345126865337806749, guid: 0767de1550113dc469719a7bec4f9d8f, type: 3}

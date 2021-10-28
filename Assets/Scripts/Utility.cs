@@ -69,52 +69,6 @@ public class Utility
         _button.colors = colors;
     }
 
-    public static string GetProvinceName(Province _province)
-    {
-        string name = "";
-
-        CountryId ownerId = _province.owner.id;
-        CountryId occupierId = _province.occupier == null ? CountryId.None : _province.occupier.id;
-
-        switch (ownerId)
-        {
-            case CountryId.Green:
-                name += "Green's Province";
-                break;
-            case CountryId.Purple:
-                name += "Purple's Province";
-                break;
-            case CountryId.Red:
-                name += "Red's Province";
-                break;
-            case CountryId.Yellow:
-                name += "Yellow's Province";
-                break;
-            default:
-                break;
-        }
-
-        switch (occupierId)
-        {
-            case CountryId.Green:
-                name += "(Occupied by Green)";
-                break;
-            case CountryId.Purple:
-                name += "(Occupied by Purple)";
-                break;
-            case CountryId.Red:
-                name += "(Occupied by Red)";
-                break;
-            case CountryId.Yellow:
-                name += "(Occupied by Yellow)";
-                break;
-            default:
-                break;
-        }
-
-        return name;
-    }
-
     public static bool GetAlreadyBuilt(Country _country, Building _building)
     {
         for (int i = 0; i < World.provinces.Length; ++i)
@@ -181,6 +135,16 @@ public class Utility
     public static float GetProvinceDistance(Province _a, Province _b)
     {
         return (_a.pos - _b.pos).magnitude;
+    }
+
+    public static void ConvertSpriteRendererToImage(GameObject gameObject)
+    {
+        Sprite sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+
+        Object.Destroy(gameObject.GetComponent<SpriteRenderer>());
+
+        Image image = gameObject.AddComponent<Image>();
+        image.sprite = sprite;
     }
 }
 

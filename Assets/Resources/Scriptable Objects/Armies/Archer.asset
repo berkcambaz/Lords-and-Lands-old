@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Archer
   id: 3
-  cost: 0
-  offensive: 0
+  cost: 7
+  offensive: 3
   defensive: 0
-  breakthrough: 0
+  breakthrough: 2
   prefab: {fileID: 4233445490366673134, guid: 5129970d9ed1bbe49821b2dd0213f7ad, type: 3}

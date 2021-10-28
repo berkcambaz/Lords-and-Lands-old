@@ -5,7 +5,7 @@ using System;
 
 public class BuildingDatabase 
 {
-    private static Building[] buildings;
+    public static Building[] buildings;
 
     public static void Init()
     {

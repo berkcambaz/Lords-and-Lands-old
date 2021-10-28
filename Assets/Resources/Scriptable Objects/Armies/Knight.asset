@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Knight
   id: 4
-  cost: 0
-  offensive: 0
-  defensive: 0
-  breakthrough: 0
-  prefab: {fileID: 0}
+  cost: 8
+  offensive: 1
+  defensive: 2
+  breakthrough: 3
+  prefab: {fileID: 7189946481101779980, guid: f31633174ba6456409192fafb392071c, type: 3}

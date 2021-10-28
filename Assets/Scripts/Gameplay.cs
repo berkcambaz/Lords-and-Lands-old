@@ -84,7 +84,7 @@ public class Gameplay
         else
         {
             currentProvince = _province;
-            UIDynamicPanel.ShowProvince(currentProvince);
+            UIDynamicPanel.FocusProvince(currentProvince);
         }
     }
 }

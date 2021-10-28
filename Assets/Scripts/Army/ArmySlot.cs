@@ -43,7 +43,8 @@ public class ArmySlot
 
         // Update the dynamic panel & stat panel
         UIStatPanel.UpdateCountryStats(province.owner);
-        UIDynamicPanel.ShowProvince(province);
+        //UIDynamicPanel.ShowProvince(province);
+        UIDynamicPanel.UpdateArmy();
     }
 
     public bool AvailableToRecruit(Army _army)
@@ -97,7 +98,8 @@ public class ArmySlot
 
         // Update the dynamic panel & stat panel
         UIStatPanel.UpdateCountryStats(province.owner);
-        UIDynamicPanel.ShowProvince(province);
+        //UIDynamicPanel.ShowProvince(province);
+        UIDynamicPanel.UpdateArmy();
     }
 
     public bool AvailableToMove()
@@ -129,7 +131,8 @@ public class ArmySlot
 
         // Update the dynamaic panel & stat panel
         UIStatPanel.UpdateCountryStats(province.owner);
-        UIDynamicPanel.ShowProvince(province);
+        //UIDynamicPanel.ShowProvince(province);
+        UIDynamicPanel.UpdateArmy();
     }
 
     public bool AvailableToAttack()

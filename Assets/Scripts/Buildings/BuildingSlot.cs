@@ -60,7 +60,8 @@ public class BuildingSlot
 
         // Update the dynamic panel & stat panel
         UIStatPanel.UpdateCountryStats(province.owner);
-        UIDynamicPanel.ShowProvince(province);
+        //UIDynamicPanel.ShowProvince(province);
+        UIDynamicPanel.UpdateBuilding();
     }
 
     public bool AvailableToBuild(Building _building)
@@ -97,7 +98,8 @@ public class BuildingSlot
 
         // Update the dynamic panel & stat panel
         UIStatPanel.UpdateCountryStats(province.owner);
-        UIDynamicPanel.ShowProvince(province);
+        //UIDynamicPanel.ShowProvince(province);
+        UIDynamicPanel.UpdateDiplomacy();
     }
 
     public bool AvailableToDemolish()

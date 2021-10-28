@@ -24,8 +24,8 @@ public class UIDynamicPanel : MonoBehaviour
     public GameObject prefabButtonBuilding;
     public GameObject prefabButtonArmy;
 
-    public Button buttonAct;
     public Button buttonDemolish;
+    public Button buttonAct;
 
     public Image imageAct;
 
@@ -41,15 +41,17 @@ public class UIDynamicPanel : MonoBehaviour
         buttonsBuilding = new Button[BuildingDatabase.buildings.Length];
         for (int i = 0; i < BuildingDatabase.buildings.Length; ++i)
         {
+            Building building = BuildingDatabase.buildings[i];
+
             GameObject gameobject = Instantiate(prefabButtonBuilding, contentBuilding.transform);
             gameobject.transform.SetSiblingIndex(i);
 
-            gameobject.transform.GetChild(0).GetComponent<Image>().sprite = BuildingDatabase.buildings[i].sprite;
+            gameobject.transform.GetChild(0).GetComponent<Image>().sprite = building.sprite;
 
             Button button = gameobject.GetComponent<Button>();
             button.onClick.AddListener(() =>
             {
-                Gameplay.currentProvince.buildingSlot.Build(BuildingDatabase.buildings[i]);
+                Gameplay.currentProvince.buildingSlot.Build(building);
             });
             buttonsBuilding[i] = button;
         }
@@ -58,28 +60,28 @@ public class UIDynamicPanel : MonoBehaviour
         buttonsArmy = new Button[ArmyDatabase.armies.Length];
         for (int i = 0; i < ArmyDatabase.armies.Length; ++i)
         {
+            Army army = ArmyDatabase.armies[i];
+
             GameObject gameobject = Instantiate(prefabButtonArmy, contentArmy.transform);
             gameobject.transform.SetSiblingIndex(i);
 
-            GameObject prefab = Instantiate(ArmyDatabase.armies[i].prefab, gameobject.transform);
+            GameObject prefab = Instantiate(army.prefab, gameobject.transform);
 
             // Crucial for prefabs to be seen
             // TODO: Make it a constant
             prefab.transform.localScale *= 150f;
 
-            // Set the mask otherwise prefabs will be seen outside container
-            //prefab.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            // Convert sprite renderers to image so they will have masks working
             Utility.ConvertSpriteRendererToImage(prefab);
             for (int j = 0; j < prefab.transform.childCount; ++j)
             {
-                //    prefab.transform.GetChild(j).GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                 Utility.ConvertSpriteRendererToImage(prefab.transform.GetChild(j).gameObject);
             }
 
             Button button = gameobject.GetComponent<Button>();
             button.onClick.AddListener(() =>
             {
-                Gameplay.currentProvince.armySlot.Recruit(ArmyDatabase.armies[i]);
+                Gameplay.currentProvince.armySlot.Recruit(army);
             });
             buttonsArmy[i] = button;
         }
@@ -95,58 +97,20 @@ public class UIDynamicPanel : MonoBehaviour
         });
     }
 
-    public static void ShowProvince(Province _province)
+    public static void FocusProvince(Province _province)
     {
-        //bool canBuildCapital = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Capital));
-        //bool canBuildForest = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Forest));
-        //bool canBuildMountains = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Mountains));
-        //bool canBuildHouse = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.House));
-        //bool canBuildTower = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Tower));
-        //bool canBuildChurch = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.GetById(BuildingId.Church));
-        //bool canRecruit = Gameplay.currentProvince.armySlot.CanRecruit(ArmyDatabase.GetById(ArmyId.Regular));
-        //bool canAct = Gameplay.currentProvince.armySlot.CanAct();
-        //bool canDemolish = Gameplay.currentProvince.buildingSlot.CanDemolish();
-        //
-        //Utility.ToggleButtonColor(Instance.buttonBuildCapital, canBuildCapital);
-        //Utility.ToggleButtonColor(Instance.buttonBuildForest, canBuildForest);
-        //Utility.ToggleButtonColor(Instance.buttonBuildMountains, canBuildMountains);
-        //Utility.ToggleButtonColor(Instance.buttonBuildHouse, canBuildHouse);
-        //Utility.ToggleButtonColor(Instance.buttonBuildTower, canBuildTower);
-        //Utility.ToggleButtonColor(Instance.buttonBuildChurch, canBuildChurch);
-        //Utility.ToggleButtonColor(Instance.buttonRecruit, canRecruit);
-        //Utility.ToggleButtonColor(Instance.buttonAct, canAct);
-        //Utility.ToggleButtonColor(Instance.buttonDemolish, canDemolish);
-        //
-        //
-        //
-        //bool availableToBuildCapital = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Capital));
-        //bool availableToBuildForest = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Forest));
-        //bool availableToBuildMountains = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Mountains));
-        //bool availableToBuildHouse = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.House));
-        //bool availableToBuildTower = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Tower));
-        //bool availableToBuildChurch = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.GetById(BuildingId.Church));
-        //bool availableToRecruit = Gameplay.currentProvince.armySlot.AvailableToRecruit(ArmyDatabase.GetById(ArmyId.Regular));
-        //bool availableToAct = Gameplay.currentProvince.armySlot.AvailableToAct();
-        //bool availableToDemolish = Gameplay.currentProvince.buildingSlot.AvailableToDemolish();
-        //
-        //Instance.buttonBuildCapital.gameObject.SetActive(availableToBuildCapital);
-        //Instance.buttonBuildForest.gameObject.SetActive(availableToBuildForest);
-        //Instance.buttonBuildMountains.gameObject.SetActive(availableToBuildMountains);
-        //Instance.buttonBuildHouse.gameObject.SetActive(availableToBuildHouse);
-        //Instance.buttonBuildTower.gameObject.SetActive(availableToBuildTower);
-        //Instance.buttonBuildChurch.gameObject.SetActive(availableToBuildChurch);
-        //Instance.buttonRecruit.gameObject.SetActive(availableToRecruit);
-        //Instance.buttonAct.gameObject.SetActive(availableToAct);
-        //Instance.buttonDemolish.gameObject.SetActive(availableToDemolish);
+        HideAll();
 
-        //Instance.panelDynamic.SetActive(true);
-        //UIManager.ShowTileFocus(_province.pos);
+        // TODO: Make buttons whiter
+        UIManager.ShowTileFocus(_province.pos);
     }
 
     public static void HideProvince()
     {
-        //Instance.panelDynamic.SetActive(false);
-        //UIManager.HideTileFocus();
+        HideAll();
+
+        // TODO: Make buttons blacker
+        UIManager.HideTileFocus();
     }
 
     public static void UpdateArmyImage(Country _country)
@@ -157,19 +121,99 @@ public class UIDynamicPanel : MonoBehaviour
 
     public static void ToggleDiplomacy()
     {
+        if (Gameplay.currentProvince == null) return;
+
+        UpdateDiplomacy();
+
         bool state = Instance.scrollViewDiplomacy.activeSelf;
+        HideAll();
         Instance.scrollViewDiplomacy.SetActive(!state);
+    }
+
+    public static void UpdateDiplomacy()
+    {
+        //bool available = false;
+        //bool can = false;
     }
 
     public static void ToggleBuilding()
     {
+        if (Gameplay.currentProvince == null || Gameplay.currentProvince.owner.id != Gameplay.currentCountry.id) return;
+
+        UpdateBuilding();
+
         bool state = Instance.scrollViewBuilding.activeSelf;
+        HideAll();
         Instance.scrollViewBuilding.SetActive(!state);
+    }
+
+    public static void UpdateBuilding()
+    {
+        bool available = false;
+        bool can = false;
+
+        // "Availables" of buildings
+        for (int i = 0; i < Instance.buttonsBuilding.Length; ++i)
+        {
+            available = Gameplay.currentProvince.buildingSlot.AvailableToBuild(BuildingDatabase.buildings[i]);
+            Instance.buttonsBuilding[i].gameObject.SetActive(available);
+        }
+
+        // "Can" of buildings
+        for (int i = 0; i < Instance.buttonsBuilding.Length; ++i)
+        {
+            can = Gameplay.currentProvince.buildingSlot.CanBuild(BuildingDatabase.buildings[i]);
+            Utility.ToggleButtonColor(Instance.buttonsBuilding[i], can);
+        }
+
+        // Demolish button
+        available = Gameplay.currentProvince.buildingSlot.AvailableToDemolish();
+        Instance.buttonDemolish.gameObject.SetActive(available);
+        can = Gameplay.currentProvince.buildingSlot.CanDemolish();
+        Utility.ToggleButtonColor(Instance.buttonDemolish, can);
     }
 
     public static void ToggleArmy()
     {
+        if (Gameplay.currentProvince == null || Gameplay.currentProvince.owner.id != Gameplay.currentCountry.id) return;
+
+        UpdateArmy();
+
         bool state = Instance.scrollViewArmy.activeSelf;
+        HideAll();
         Instance.scrollViewArmy.SetActive(!state);
+    }
+
+    public static void UpdateArmy()
+    {
+        bool available = false;
+        bool can = false;
+
+        // "Availables" of armies
+        for (int i = 0; i < Instance.buttonsArmy.Length; ++i)
+        {
+            available = Gameplay.currentProvince.armySlot.AvailableToRecruit(ArmyDatabase.armies[i]);
+            Instance.buttonsArmy[i].gameObject.SetActive(available);
+        }
+
+        // "Can" of armies
+        for (int i = 0; i < Instance.buttonsArmy.Length; ++i)
+        {
+            can = Gameplay.currentProvince.armySlot.CanRecruit(ArmyDatabase.armies[i]);
+            Utility.ToggleButtonColor(Instance.buttonsArmy[i], can);
+        }
+
+        // Act button
+        available = Gameplay.currentProvince.armySlot.AvailableToAct();
+        Instance.buttonAct.gameObject.SetActive(available);
+        can = Gameplay.currentProvince.armySlot.CanAct();
+        Utility.ToggleButtonColor(Instance.buttonAct, can);
+    }
+
+    private static void HideAll()
+    {
+        Instance.scrollViewDiplomacy.SetActive(false);
+        Instance.scrollViewBuilding.SetActive(false);
+        Instance.scrollViewArmy.SetActive(false);
     }
 }

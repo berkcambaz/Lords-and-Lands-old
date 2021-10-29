@@ -207,17 +207,17 @@ public class Army : ScriptableObject
             // If sieging unsieged land
             else if (_province.occupier == null)
             {
-                _province.Siege();
+                _province.Siege(_province.armySlot);
             }
             // If sieging land sieged by somebody else
             else if (_province.occupier.id != _province.armySlot.country.id)
             {
-                _province.Siege();
+                _province.Siege(_province.armySlot);
             }
             // If conquering sieged
             else
             {
-                _province.Conquer();
+                _province.Conquer(_province.armySlot);
             }
         }
 

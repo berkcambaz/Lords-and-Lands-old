@@ -23,23 +23,27 @@ public class Gameplay
 
     public static void NextTurn()
     {
-        // If country has not placed it's capital yet, don't move to next turn
-        if (currentCountry != null && !Utility.GetAlreadyBuilt(currentCountry, BuildingDatabase.GetById(BuildingId.Capital)))
+        // If country exists, do the checks and proceed the armies
+        if (currentCountry != null && Utility.GetProvinceCount(currentCountry) != 0)
         {
-            return;
-        }
-
-        if (currentCountry != null)
-        {
-            // Add the income amount to the gold
-            currentCountry.gold += currentCountry.income;
-
-            // Update the armies
-            for (int i = 0; i < World.provinces.Length; ++i)
+            // If country has not placed it's capital yet, don't move to next turn
+            if (currentCountry != null && !Utility.GetAlreadyBuilt(currentCountry, BuildingDatabase.GetById(BuildingId.Capital)))
             {
-                if (World.provinces[i].armySlot.army != null && World.provinces[i].armySlot.country.id == currentCountry.id)
+                return;
+            }
+
+            if (currentCountry != null)
+            {
+                // Add the income amount to the gold
+                currentCountry.gold += currentCountry.income;
+
+                // Update the armies
+                for (int i = 0; i < World.provinces.Length; ++i)
                 {
-                    World.provinces[i].armySlot.Update();
+                    if (World.provinces[i].armySlot.army != null && World.provinces[i].armySlot.country.id == currentCountry.id)
+                    {
+                        World.provinces[i].armySlot.Update();
+                    }
                 }
             }
         }

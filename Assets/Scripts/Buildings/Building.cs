@@ -20,6 +20,7 @@ public class Building : ScriptableObject
     public bool recruitable;
     public bool unbuildable;
     public bool undestroyable;
+    public bool blocking;
 
     [Space(10)]
     public float offensive;

@@ -26,18 +26,63 @@ public class Province
         pos = _pos;
     }
 
-    public void Conquer()
+    public void Conquer(ArmySlot _armySlot)
     {
-        owner = armySlot.country;
+        // If this is the capital
+        if (buildingSlot.building != null && buildingSlot.building.id == BuildingId.Capital)
+        {
+            // If there is only one province left, allow it to be conquered
+            if (Utility.GetProvinceCount(owner) != 1) return;
+
+            // Remove the capital building
+            buildingSlot.building.Demolish(this);
+
+            // TODO: Remove country
+
+            TilemapManager.UpdateProvinceTile(this);
+        }
+
+        owner = _armySlot.country;
         occupier = null;
         state = ProvinceState.Free;
 
         buildingSlot.AddEffects();
     }
 
-    public void Siege()
+    public void Siege(ArmySlot _armySlot)
     {
-        occupier = armySlot.country;
+        // If this is the capital
+        if (buildingSlot.building != null && buildingSlot.building.id == BuildingId.Capital)
+        {
+            // Randomly siege provinces of that nation, excluding the capital
+            for (int i = 0; i < World.provinces.Length; ++i)
+            {
+                Province province = World.provinces[i];
+
+                // If province is not occupied or occupied by the army on the province
+                if (province.owner.id == owner.id && (province.occupier == null || province.occupier.id == armySlot.country.id))
+                {
+                    // If capital, don't siege since it will cause a recursive sieging bug
+                    if (province.buildingSlot.building != null && province.buildingSlot.building.id == BuildingId.Capital)
+                        continue;
+
+                    // Dice & if the dice is higher than 3, siege that province, if already sieged, conquer
+                    // TODO: Make 3 a constant
+                    int dice = Gameplay.srandom.Dice();
+                    if (dice > 3)
+                    {
+                        if (province.state == ProvinceState.Occupied) province.Conquer(_armySlot);
+                        else province.Siege(_armySlot);
+                        TilemapManager.UpdateProvinceTile(province);
+                    }
+                }
+            }
+
+            // If there is only one province left, allow it to be sieged
+            if (Utility.GetProvinceCount(owner) != 1) return;
+        }
+
+        occupier = _armySlot.country;
         state = ProvinceState.Occupied;
 
         buildingSlot.RemoveEffects();

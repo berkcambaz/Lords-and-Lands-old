@@ -39,6 +39,9 @@ public class Utility
             }
         }
 
+        if (GetProvinceCount(World.countries[(id + 1) % World.countryCount]) == 0)
+            return GetNextCountry(World.countries[(id + 1) % World.countryCount]);
+
         return World.countries[(id + 1) % World.countryCount];
     }
 
@@ -80,6 +83,18 @@ public class Utility
         }
 
         return false;
+    }
+
+    public static int GetProvinceCount(Country _country)
+    {
+        int count = 0;
+
+        for (int i = 0; i < World.provinces.Length; ++i)
+        {
+            if (World.provinces[i].owner.id == _country.id) count++;
+        }
+
+        return count;
     }
 
     public static bool[] GetActableTiles(Country _country, Province _province)

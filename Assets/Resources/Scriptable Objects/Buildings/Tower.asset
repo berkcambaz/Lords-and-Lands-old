@@ -21,6 +21,7 @@ MonoBehaviour:
   recruitable: 0
   unbuildable: 0
   undestroyable: 0
+  blocking: 1
   offensive: 0
   defensive: 2
   resistance: 2

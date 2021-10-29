@@ -84,7 +84,7 @@ public class MENU_New : MonoBehaviour
 
     public static void DecreaseWidth()
     {
-        if (Instance.width > 10) Instance.width--;    /// TODO: Make 10 a constant
+        if (Instance.width > 5) Instance.width--;    /// TODO: Make 5 a constant
         Instance.textWidth.text = Instance.width.ToString();
     }
 
@@ -96,7 +96,7 @@ public class MENU_New : MonoBehaviour
 
     public static void DecreaseHeight()
     {
-        if (Instance.height > 10) Instance.height--;    /// TODO: Make 10 a constant
+        if (Instance.height > 5) Instance.height--;    /// TODO: Make 5 a constant
         Instance.textHeight.text = Instance.height.ToString();
     }
 
